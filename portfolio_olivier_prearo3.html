@@ -1,0 +1,2780 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Olivier PREARO — Chef de Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #08080d;
+    --bg2: #0f0f18;
+    --surface: #13131e;
+    --border: rgba(139,124,248,0.15);
+    --accent: #8B7CF8;
+    --accent2: #6B5ED4;
+    --gold: #C9A84C;
+    --white: #F0EEE8;
+    --muted: #888899;
+    --section-pad: 120px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ── NAV ─────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 60px;
+    background: linear-gradient(to bottom, rgba(8,8,13,0.97) 0%, transparent 100%);
+    backdrop-filter: blur(2px);
+    transition: background 0.3s;
+  }
+  nav.scrolled {
+    background: rgba(8,8,13,0.96);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 10px 26px;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .nav-cta:hover {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  /* ── HERO ────────────────────────── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 60px 80px;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('Accueil.png') center center / cover no-repeat;
+    filter: brightness(0.22) saturate(0.6);
+    transform: scale(1.04);
+    transition: transform 12s ease-out;
+  }
+  .hero-bg.loaded { transform: scale(1); }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(8,8,13,0.7) 0%,
+      rgba(8,8,13,0.2) 50%,
+      rgba(139,124,248,0.05) 100%
+    );
+  }
+  .hero-overlay2 {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 60%;
+    background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+  }
+  .hero-eyebrow {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.3s forwards;
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(4rem, 8vw, 7.5rem);
+    font-weight: 300;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.5s forwards;
+  }
+  .hero-name strong {
+    font-weight: 700;
+    display: block;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gold);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.7s forwards;
+  }
+  .hero-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(240,238,232,0.72);
+    max-width: 560px;
+    margin-bottom: 44px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.9s forwards;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.9s 1.1s forwards;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+    padding: 14px 36px;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.25s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--white); transform: translateY(-2px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--white);
+    padding: 14px 36px;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(240,238,232,0.25);
+    transition: all 0.25s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--white); transform: translateY(-2px); }
+
+  /* hero stats */
+  .hero-stats {
+    position: absolute;
+    right: 60px;
+    bottom: 80px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    text-align: right;
+    opacity: 0;
+    animation: fadeIn 1s 1.4s forwards;
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* scroll indicator */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeIn 1s 1.8s forwards;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, transparent, var(--accent));
+    animation: scrollPulse 2s infinite;
+  }
+  .scroll-text {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    writing-mode: horizontal-tb;
+  }
+
+  /* ── SECTIONS COMMON ─────────────── */
+  section {
+    padding: var(--section-pad) 60px;
+  }
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 70px;
+    gap: 40px;
+  }
+  .section-tag {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 300px;
+    margin-bottom: 8px;
+  }
+
+  /* ── À PROPOS ────────────────────── */
+  #apropos {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .about-bio {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(240,238,232,0.82);
+  }
+  .about-bio p + p { margin-top: 1.2em; }
+  .highlight {
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .skills-block {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .skill-group h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .skill-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .pill {
+    background: rgba(139,124,248,0.1);
+    border: 1px solid rgba(139,124,248,0.2);
+    color: rgba(240,238,232,0.85);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    padding: 6px 14px;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+  .pill:hover {
+    background: rgba(139,124,248,0.2);
+    border-color: var(--accent);
+    color: var(--white);
+  }
+
+  /* ── TIMELINE (Expérience) ──────── */
+  .timeline {
+    margin-top: 60px;
+    padding-top: 60px;
+    border-top: 1px solid var(--border);
+  }
+  .timeline-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 160px 1px 1fr;
+    gap: 0 30px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .timeline-dates {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    color: var(--muted);
+    padding-top: 4px;
+  }
+  .timeline-dot {
+    width: 1px;
+    background: var(--border);
+    position: relative;
+    margin-top: 6px;
+  }
+  .timeline-dot::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .timeline-content h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--white);
+  }
+  .timeline-company {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .timeline-desc {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+  .timeline-desc li {
+    margin-bottom: 4px;
+    margin-left: 16px;
+  }
+
+  /* ── PORTFOLIO ───────────────────── */
+  #portfolio {
+    padding-top: 100px;
+    padding-bottom: 0;
+  }
+  .portfolio-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 60px;
+    overflow-x: auto;
+  }
+  .tab-btn {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: transparent;
+    border: none;
+    padding: 16px 28px;
+    cursor: pointer;
+    transition: all 0.25s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { color: var(--white); }
+  .tab-btn.active {
+    color: var(--white);
+    border-bottom-color: var(--accent);
+  }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* project cards */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin-bottom: 2px;
+  }
+  .projects-grid.wide {
+    grid-template-columns: 1fr;
+  }
+  .projects-grid.trio {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .project-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--surface);
+    cursor: pointer;
+  }
+  .project-card img {
+    width: 100%;
+    display: block;
+    transition: transform 0.6s ease, filter 0.4s ease;
+    filter: brightness(0.88) saturate(0.9);
+  }
+  .project-card:hover img {
+    transform: scale(1.04);
+    filter: brightness(0.6) saturate(0.7);
+  }
+  .project-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(8,8,13,0.95) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .project-info {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 28px 30px;
+    transform: translateY(0);
+    transition: transform 0.4s ease;
+  }
+  .project-tag {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .project-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem;
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .project-sub {
+    font-size: 0.8rem;
+    color: rgba(240,238,232,0.55);
+    font-weight: 300;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .project-card:hover .project-sub { opacity: 1; }
+
+  /* feature card - full width with text side */
+  .feature-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    margin-bottom: 2px;
+    overflow: hidden;
+  }
+  .feature-card-img {
+    overflow: hidden;
+  }
+  .feature-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s;
+    filter: brightness(0.88) saturate(0.8);
+  }
+  .feature-card:hover .feature-card-img img {
+    transform: scale(1.04);
+  }
+  .feature-card-body {
+    padding: 50px 46px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .feature-card-body .project-tag { margin-bottom: 16px; }
+  .feature-card-body h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .feature-card-body .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--gold);
+    margin-bottom: 22px;
+  }
+  .feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .feature-list li {
+    font-size: 0.88rem;
+    color: var(--muted);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .feature-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.7rem;
+  }
+
+  /* ── CLIENTS ─────────────────────── */
+  #clients {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+  }
+  .clients-marquee-wrap {
+    overflow: hidden;
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .clients-marquee {
+    display: flex;
+    gap: 60px;
+    animation: marquee 30s linear infinite;
+    white-space: nowrap;
+  }
+  .clients-marquee span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--muted);
+    flex-shrink: 0;
+    transition: color 0.2s;
+  }
+  .clients-marquee span:hover { color: var(--white); }
+
+  /* ── CONTACT ─────────────────────── */
+  #contact {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .contact-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .contact-eyebrow {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .contact-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 600;
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .contact-sub {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--muted);
+    margin-bottom: 50px;
+  }
+  .contact-cards {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+  }
+  .contact-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 24px 30px;
+    min-width: 200px;
+    text-align: left;
+    transition: border-color 0.25s;
+    text-decoration: none;
+  }
+  .contact-card:hover { border-color: var(--accent); }
+  .contact-card-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .contact-card-value {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--white);
+    font-weight: 400;
+  }
+
+  /* ── FOOTER ──────────────────────── */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 30px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer p {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-family: 'Syne', sans-serif;
+    letter-spacing: 0.05em;
+  }
+  .footer-lang {
+    display: flex;
+    gap: 20px;
+  }
+  .lang-badge {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .lang-badge strong {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* ── ANIMATIONS ──────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.7); transform-origin: top; }
+    50% { opacity: 1; transform: scaleY(1); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Reveal on scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* accent rule */
+  .accent-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--accent);
+    margin-bottom: 24px;
+  }
+
+  /* ── RESPONSIVE BASICS ───────────── */
+  @media (max-width: 900px) {
+    nav { padding: 18px 28px; }
+    nav .nav-links { display: none; }
+    section { padding: 70px 28px; }
+    .hero { padding: 0 28px 60px; }
+    .hero-stats { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 50px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .projects-grid.trio { grid-template-columns: 1fr; }
+    .feature-card { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="#" class="nav-logo">Olivier <span>PREARO</span></a>
+  <ul class="nav-links">
+    <li><a href="#apropos">Profil</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#clients">Clients</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Me contacter</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="accueil">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay2"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Portfolio — Chef de Studio &amp; Directeur de Production</p>
+    <h1 class="hero-name">
+      Olivier<strong>PREARO</strong>
+    </h1>
+    <p class="hero-title">21 ans d'expertise en production graphique</p>
+    <p class="hero-desc">
+      Pilotage de studios graphiques multi-sites, management d'équipes créatives, 
+      maîtrise complète du print et du digital. De la conception au BAT, 
+      je garantis qualité, fluidité et rigueur sur chaque projet.
+    </p>
+    <div class="hero-actions">
+      <a href="#portfolio" class="btn-primary">Voir le portfolio</a>
+      <a href="#contact" class="btn-ghost">Me contacter</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">21+</div>
+      <div class="stat-label">Années d'expérience</div>
+    </div>
+    <div>
+      <div class="stat-num">4</div>
+      <div class="stat-label">Domaines d'expertise</div>
+    </div>
+    <div>
+      <div class="stat-num">50+</div>
+      <div class="stat-label">Clients référencés</div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <div class="scroll-text">Scroll</div>
+  </div>
+</section>
+
+<!-- À PROPOS -->
+<section id="apropos">
+  <div class="section-header reveal">
+    <div>
+      <span class="section-tag">Profil</span>
+      <h2 class="section-title">Chef de Studio &amp;<br>Directeur de Production</h2>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-bio reveal">
+      <div class="accent-rule"></div>
+      <p>
+        Professionnel confirmé avec plus de <span class="highlight">21 ans d'expérience</span> en tant que 
+        chef de studio en agence de publicité et 5 années en infographie/exécution/gravure.
+      </p>
+      <p>
+        J'allie <span class="highlight">management d'équipe, sens de l'organisation, rapidité d'exécution</span> 
+        et parfaite maîtrise des outils de production pour garantir une création graphique fiable 
+        et de haute qualité.
+      </p>
+      <p>
+        Fédérateur et orienté résultats, j'optimise les workflows et accompagne les équipes 
+        pour assurer des projets <span class="highlight">menés de A à Z avec efficacité et cohérence</span>.
+      </p>
+      <p style="margin-top: 2em;">
+        Actuellement <span class="highlight">Chef de Studio chez Havas Factory</span> 
+        depuis 2005 — pilotage de la production graphique sur les pôles print, digital et social media.
+      </p>
+    </div>
+
+    <div class="skills-block">
+      <div class="skill-group reveal reveal-delay-1">
+        <h4>Compétences techniques</h4>
+        <div class="skill-pills">
+          <span class="pill">InDesign</span>
+          <span class="pill">Photoshop</span>
+          <span class="pill">Illustrator</span>
+          <span class="pill">Acrobat</span>
+          <span class="pill">Mise en page automatique</span>
+          <span class="pill">Plateforme Pomelo / Viva</span>
+          <span class="pill">Workflow multi-site</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal reveal-delay-2">
+        <h4>Domaines de production</h4>
+        <div class="skill-pills">
+          <span class="pill">Publicité Print &amp; Digitale</span>
+          <span class="pill">Édition &amp; Magazines</span>
+          <span class="pill">Packaging &amp; PLV</span>
+          <span class="pill">Dépôts ANSM / Pharma</span>
+          <span class="pill">Rapports Annuels</span>
+          <span class="pill">Campagnes Affichage</span>
+          <span class="pill">eADV / Digital</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal reveal-delay-3">
+        <h4>Management &amp; Soft skills</h4>
+        <div class="skill-pills">
+          <span class="pill">Planification multi-site</span>
+          <span class="pill">Leadership d'équipe</span>
+          <span class="pill">Gestion du stress</span>
+          <span class="pill">Sens du détail</span>
+          <span class="pill">Adaptabilité</span>
+          <span class="pill">Orientation solutions</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal reveal-delay-3">
+        <h4>Langues</h4>
+        <div class="skill-pills">
+          <span class="pill">🇫🇷 Français — Natif</span>
+          <span class="pill">🇬🇧 Anglais — B1</span>
+          <span class="pill">🇮🇹 Italien — C2</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="timeline reveal">
+    <span class="section-tag">Parcours</span>
+    <div class="timeline-items">
+      <div class="timeline-item">
+        <div class="timeline-dates">2005<br>→ Aujourd'hui</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Chef de Studio</h3>
+          <div class="timeline-company">Havas Factory</div>
+          <ul class="timeline-desc">
+            <li>Piloter la production graphique du studio (print, digital, social media)</li>
+            <li>Planifier et coordonner le travail des équipes créatives</li>
+            <li>Garantir la qualité, la cohérence et la conformité des livrables</li>
+            <li>Gérer les workflows de production et optimiser les délais</li>
+            <li>Assurer la liaison entre équipes commerciales, créatives et techniques</li>
+            <li>Superviser les prestataires externes et freelances</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dates">2000<br>→ 2005</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Infographiste Exe / Gravure</h3>
+          <div class="timeline-company">Publicis puis Euro RSCG</div>
+          <ul class="timeline-desc">
+            <li>Exécution et gravure de documents publicitaires</li>
+            <li>Maîtrise des contraintes techniques print et prépresse</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dates">1998<br>→ 2000</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Monteur / Caméaraman</h3>
+          <div class="timeline-company">OP Production</div>
+          <ul class="timeline-desc">
+            <li>Production audiovisuelle, montage et prise de vues</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-header reveal">
+    <div>
+      <span class="section-tag">Réalisations</span>
+      <h2 class="section-title">Portfolio de productions</h2>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- TABS -->
+  <div class="portfolio-tabs">
+    <button class="tab-btn active" onclick="showTab('display')">Display / Affichage / PLV</button>
+    <button class="tab-btn" onclick="showTab('magazine')">Magazines BtoB / BtoC</button>
+    <button class="tab-btn" onclick="showTab('pharma')">Dépôts ANSM / Pharma</button>
+    <button class="tab-btn" onclick="showTab('rapports')">Rapports Annuels</button>
+  </div>
+
+  <!-- TAB: DISPLAY -->
+  <div class="tab-content active" id="tab-display">
+
+    <!-- CAROUSEL CSS injected inline -->
+    <style>
+    .carousel-wrap {
+      position: relative;
+      width: 100%;
+      background: #08080d;
+      overflow: hidden;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.65s cubic-bezier(0.77,0,0.175,1);
+      will-change: transform;
+    }
+    .carousel-slide {
+      min-width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .carousel-slide img {
+      width: 100%;
+      height: 78vh;
+      object-fit: contain;
+      object-position: center center;
+      display: block;
+      background: #0a0a0f;
+      transition: transform 0.8s ease;
+    }
+    .carousel-slide.active img {
+      transform: scale(1.015);
+    }
+
+    /* Client label bar */
+    .slide-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to top, rgba(8,8,13,0.88) 0%, transparent 100%);
+    }
+    .slide-client {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #8B7CF8;
+    }
+    .slide-counter {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      color: rgba(240,238,232,0.4);
+    }
+
+    /* Navigation arrows */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px; height: 52px;
+      background: rgba(8,8,13,0.7);
+      border: 1px solid rgba(139,124,248,0.3);
+      color: #F0EEE8;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.22s;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+    }
+    .carousel-btn:hover {
+      background: #8B7CF8;
+      border-color: #8B7CF8;
+      color: #08080d;
+    }
+    .carousel-btn.prev { left: 24px; }
+    .carousel-btn.next { right: 24px; }
+
+    /* Dots */
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 18px 0 10px;
+    }
+    .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(139,124,248,0.25);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.25s;
+    }
+    .dot.active {
+      background: #8B7CF8;
+      width: 24px;
+      border-radius: 3px;
+    }
+
+    /* Client tabs above carousel */
+    .client-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid rgba(139,124,248,0.15);
+      overflow-x: auto;
+      margin-bottom: 0;
+    }
+    .client-tab {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #888899;
+      background: transparent;
+      border: none;
+      padding: 14px 26px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      white-space: nowrap;
+    }
+    .client-tab:hover { color: #F0EEE8; }
+    .client-tab.active {
+      color: #F0EEE8;
+      border-bottom-color: #8B7CF8;
+    }
+    </style>
+
+    <!-- Client tab nav -->
+    <div class="client-tabs" id="clientTabs">
+      <button class="client-tab active" onclick="goToSlide(0)">Canal+</button>
+      <button class="client-tab" onclick="goToSlide(1)">Lacoste</button>
+      <button class="client-tab" onclick="goToSlide(2)">Alpine</button>
+      <button class="client-tab" onclick="goToSlide(3)">Héléna Rubinstein</button>
+      <button class="client-tab" onclick="goToSlide(4)">LVMH — JO 2024</button>
+      <button class="client-tab" onclick="goToSlide(5)">La Poste</button>
+      <button class="client-tab" onclick="goToSlide(6)">Crédit Mutuel</button>
+    </div>
+
+    <!-- Carousel -->
+    <div class="carousel-wrap" id="displayCarousel">
+
+      <div class="carousel-track" id="carouselTrack">
+
+        <!-- Slide 1: Canal+ Validé — mini carousel 3 formats -->
+<div class="carousel-slide active">
+  <style>
+  .canp-carousel {
+    position: relative;
+    width: 100%;
+    height: 78vh;
+    overflow: hidden;
+    background: #0a0a0f;
+  }
+  .canp-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.7s cubic-bezier(0.77,0,0.175,1);
+  }
+  .canp-item {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .canp-item img {
+    width: 100%;
+    height: 78vh;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    transition: transform 0.8s ease;
+  }
+  .canp-item.active img { transform: scale(1.015); }
+  .canp-format-badge {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: rgba(139,124,248,0.88);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 5px 13px;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .canp-progress {
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 2px;
+    background: #8B7CF8;
+    width: 0%;
+    transition: width 3.5s linear;
+  }
+  .canp-dots {
+    position: absolute;
+    bottom: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 5;
+  }
+  .canp-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .canp-dot.active {
+    background: #8B7CF8;
+    width: 20px;
+    border-radius: 3px;
+  }
+  .canp-nav {
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 5;
+  }
+  .canp-nav-btn {
+    pointer-events: all;
+    width: 34px; height: 34px;
+    background: rgba(8,8,13,0.6);
+    border: 1px solid rgba(139,124,248,0.25);
+    color: #F0EEE8;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    backdrop-filter: blur(4px);
+  }
+  .canp-nav-btn:hover { background: #8B7CF8; color: #08080d; border-color: #8B7CF8; }
+  </style>
+
+  <div class="canp-carousel" id="canpCarousel">
+    <div class="canp-track" id="canpTrack">
+      <div class="canp-item active">
+        <img src="CANP_2509053_SAISON_3_VALIDE_4x3_Aff.png" alt="Canal+ — Validé S3 · 4×3" loading="eager">
+        <span class="canp-format-badge">4 × 3 m</span>
+      </div>
+      <div class="canp-item">
+        <img src="CANP_2509053_SAISON_3_VALIDE_60x80_Aff.png" alt="Canal+ — Validé S3 · 60×80" loading="lazy">
+        <span class="canp-format-badge">60 × 80 cm</span>
+      </div>
+      <div class="canp-item">
+        <img src="CANP_2509053_SAISON_3_VALIDE_145x216_Aff.png" alt="Canal+ — Validé S3 · 145×216" loading="lazy">
+        <span class="canp-format-badge">145 × 216 cm</span>
+      </div>
+    </div>
+    <div class="canp-nav">
+      <button class="canp-nav-btn" id="canpPrev">&#8592;</button>
+      <button class="canp-nav-btn" id="canpNext">&#8594;</button>
+    </div>
+    <div class="canp-dots" id="canpDots">
+      <span class="canp-dot active"></span>
+      <span class="canp-dot"></span>
+      <span class="canp-dot"></span>
+    </div>
+    <div class="canp-progress" id="canpProgress"></div>
+  </div>
+
+  <div class="slide-label">
+    <span class="slide-client">Canal+ — Validé Saison 3 · Déclinaisons formats affichage</span>
+  </div>
+
+  <script>
+  (function() {
+    var ci = 0;
+    var total = 3;
+    var track = document.getElementById('canpTrack');
+    var dots = document.querySelectorAll('#canpDots .canp-dot');
+    var items = document.querySelectorAll('#canpCarousel .canp-item');
+    var progress = document.getElementById('canpProgress');
+    var timer;
+
+    function canpUpdate(idx) {
+      ci = (idx + total) % total;
+      track.style.transform = 'translateX(-' + (ci * 100) + '%)';
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === ci); });
+      items.forEach(function(it, i) { it.classList.toggle('active', i === ci); });
+      progress.style.transition = 'none';
+      progress.style.width = '0%';
+      setTimeout(function() {
+        progress.style.transition = 'width 3.5s linear';
+        progress.style.width = '100%';
+      }, 30);
+    }
+
+    function startAuto() {
+      clearInterval(timer);
+      timer = setInterval(function() { canpUpdate(ci + 1); }, 3500);
+    }
+
+    document.getElementById('canpNext').addEventListener('click', function() { canpUpdate(ci + 1); startAuto(); });
+    document.getElementById('canpPrev').addEventListener('click', function() { canpUpdate(ci - 1); startAuto(); });
+    dots.forEach(function(d, i) {
+      d.addEventListener('click', function() { canpUpdate(i); startAuto(); });
+    });
+
+    canpUpdate(0);
+    startAuto();
+  })();
+  </script>
+</div>
+
+        <!-- Slide 2: Lacoste — mini carousel 2 visuels -->
+<div class="carousel-slide">
+  <style>
+  .laco-carousel {
+    position: relative;
+    width: 100%;
+    height: 78vh;
+    overflow: hidden;
+    background: #0a0a0f;
+  }
+  .laco-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.7s cubic-bezier(0.77,0,0.175,1);
+  }
+  .laco-item {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .laco-item img {
+    width: 100%;
+    height: 78vh;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    transition: transform 0.8s ease;
+  }
+  .laco-item.active img { transform: scale(1.015); }
+  .laco-format-badge {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: rgba(139,124,248,0.88);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 5px 13px;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .laco-progress {
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 2px;
+    background: #8B7CF8;
+    width: 0%;
+    transition: width 3.5s linear;
+  }
+  .laco-dots {
+    position: absolute;
+    bottom: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 5;
+  }
+  .laco-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .laco-dot.active {
+    background: #8B7CF8;
+    width: 20px;
+    border-radius: 3px;
+  }
+  .laco-nav {
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 5;
+  }
+  .laco-nav-btn {
+    pointer-events: all;
+    width: 34px; height: 34px;
+    background: rgba(8,8,13,0.6);
+    border: 1px solid rgba(139,124,248,0.25);
+    color: #F0EEE8;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    backdrop-filter: blur(4px);
+  }
+  .laco-nav-btn:hover { background: #8B7CF8; color: #08080d; border-color: #8B7CF8; }
+  </style>
+
+  <div class="laco-carousel" id="lacoCarousel">
+    <div class="laco-track" id="lacoTrack">
+      <div class="laco-item active">
+        <img src="LACO_2505135_PierreNiney_210x280_RevueDuClubLAGARDERE_ParisRACING.png" alt="Campagne presse et affichage Pierre Niney" loading="lazy">
+        <span class="laco-format-badge">Campagne presse et affichage Pierre Niney</span>
+      </div>
+      <div class="laco-item">
+        <img src="LACO_2507067_C_Boutier_225x302_Journal_Du_Golf.png" alt="Campagne presse Céline Boutier" loading="lazy">
+        <span class="laco-format-badge">Campagne presse Céline Boutier</span>
+      </div>
+    </div>
+    <div class="laco-nav">
+      <button class="laco-nav-btn" id="lacoPrev">&#8592;</button>
+      <button class="laco-nav-btn" id="lacoNext">&#8594;</button>
+    </div>
+    <div class="laco-dots" id="lacoDots">
+      <span class="laco-dot active"></span>
+      <span class="laco-dot"></span>
+    </div>
+    <div class="laco-progress" id="lacoProgress"></div>
+  </div>
+
+  <div class="slide-label">
+    <span class="slide-client">Lacoste</span>
+  </div>
+
+  <script>
+  (function() {
+    var ci = 0;
+    var total = 2;
+    var track = document.getElementById('lacoTrack');
+    var dots = document.querySelectorAll('#lacoDots .laco-dot');
+    var items = document.querySelectorAll('#lacoCarousel .laco-item');
+    var progress = document.getElementById('lacoProgress');
+    var timer;
+
+    function lacoUpdate(idx) {
+      ci = (idx + total) % total;
+      track.style.transform = 'translateX(-' + (ci * 100) + '%)';
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === ci); });
+      items.forEach(function(it, i) { it.classList.toggle('active', i === ci); });
+      progress.style.transition = 'none';
+      progress.style.width = '0%';
+      setTimeout(function() {
+        progress.style.transition = 'width 3.5s linear';
+        progress.style.width = '100%';
+      }, 30);
+    }
+
+    function startAuto() {
+      clearInterval(timer);
+      timer = setInterval(function() { lacoUpdate(ci + 1); }, 3500);
+    }
+
+    document.getElementById('lacoNext').addEventListener('click', function() { lacoUpdate(ci + 1); startAuto(); });
+    document.getElementById('lacoPrev').addEventListener('click', function() { lacoUpdate(ci - 1); startAuto(); });
+    dots.forEach(function(d, i) {
+      d.addEventListener('click', function() { lacoUpdate(i); startAuto(); });
+    });
+
+    lacoUpdate(0);
+    startAuto();
+  })();
+  </script>
+</div>
+
+        <!-- Slide 3: Alpine — carousel 2 visuels -->
+<div class="carousel-slide">
+  <style>
+  .alpi-carousel {
+    position: relative; width: 100%; height: 78vh; overflow: hidden; background: #0a0a0f;
+  }
+  .alpi-track {
+    display: flex; height: 100%; transition: transform 0.7s cubic-bezier(0.77,0,0.175,1);
+  }
+  .alpi-item {
+    min-width: 100%; height: 100%; position: relative; display: flex; align-items: center; justify-content: center;
+  }
+  .alpi-item img {
+    width: 100%; height: 78vh; object-fit: contain; object-position: center; display: block; transition: transform 0.8s ease;
+  }
+  .alpi-item.active img { transform: scale(1.015); }
+  .alpi-format-badge {
+    position: absolute; top: 18px; right: 18px;
+    background: rgba(139,124,248,0.88); color: #fff;
+    font-family: 'Syne', sans-serif; font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 13px;
+    backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.15);
+  }
+  .alpi-progress {
+    position: absolute; bottom: 0; left: 0; height: 2px;
+    background: #8B7CF8; width: 0%; transition: width 3.5s linear;
+  }
+  .alpi-dots {
+    position: absolute; bottom: 52px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 8px; z-index: 5;
+  }
+  .alpi-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.25); transition: all 0.25s; cursor: pointer;
+  }
+  .alpi-dot.active { background: #8B7CF8; width: 20px; border-radius: 3px; }
+  .alpi-nav {
+    position: absolute; top: 50%; left: 0; right: 0;
+    display: flex; justify-content: space-between; padding: 0 16px;
+    transform: translateY(-50%); pointer-events: none; z-index: 5;
+  }
+  .alpi-nav-btn {
+    pointer-events: all; width: 34px; height: 34px;
+    background: rgba(8,8,13,0.6); border: 1px solid rgba(139,124,248,0.25);
+    color: #F0EEE8; font-size: 0.85rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; backdrop-filter: blur(4px);
+  }
+  .alpi-nav-btn:hover { background: #8B7CF8; color: #08080d; border-color: #8B7CF8; }
+  </style>
+
+  <div class="alpi-carousel" id="alpiCarousel">
+    <div class="alpi-track" id="alpiTrack">
+      <div class="alpi-item active">
+        <img src="Alpine_1.png" alt="Alpine A390 — Campagne presse" loading="lazy">
+        <span class="alpi-format-badge">Alpine A390 · Électrique</span>
+      </div>
+      <div class="alpi-item">
+        <img src="Alpine_2.png" alt="Alpine A290 — Campagne presse" loading="lazy">
+        <span class="alpi-format-badge">Alpine A290 · Car of the Year Finalist</span>
+      </div>
+    </div>
+    <div class="alpi-nav">
+      <button class="alpi-nav-btn" id="alpiPrev">&#8592;</button>
+      <button class="alpi-nav-btn" id="alpiNext">&#8594;</button>
+    </div>
+    <div class="alpi-dots" id="alpiDots">
+      <span class="alpi-dot active"></span>
+      <span class="alpi-dot"></span>
+    </div>
+    <div class="alpi-progress" id="alpiProgress"></div>
+  </div>
+
+  <div class="slide-label">
+    <span class="slide-client">Alpine — A290 / A390</span>
+  </div>
+
+  <script>
+  (function() {
+    var ci = 0, total = 2;
+    var track = document.getElementById('alpiTrack');
+    var dots = document.querySelectorAll('#alpiDots .alpi-dot');
+    var items = document.querySelectorAll('#alpiCarousel .alpi-item');
+    var progress = document.getElementById('alpiProgress');
+    var timer;
+    function alpiUpdate(idx) {
+      ci = (idx + total) % total;
+      track.style.transform = 'translateX(-' + (ci * 100) + '%)';
+      dots.forEach(function(d,i){ d.classList.toggle('active', i===ci); });
+      items.forEach(function(it,i){ it.classList.toggle('active', i===ci); });
+      progress.style.transition = 'none'; progress.style.width = '0%';
+      setTimeout(function(){ progress.style.transition = 'width 3.5s linear'; progress.style.width = '100%'; }, 30);
+    }
+    function startAuto() { clearInterval(timer); timer = setInterval(function(){ alpiUpdate(ci+1); }, 3500); }
+    document.getElementById('alpiNext').addEventListener('click', function(){ alpiUpdate(ci+1); startAuto(); });
+    document.getElementById('alpiPrev').addEventListener('click', function(){ alpiUpdate(ci-1); startAuto(); });
+    dots.forEach(function(d,i){ d.addEventListener('click', function(){ alpiUpdate(i); startAuto(); }); });
+    alpiUpdate(0); startAuto();
+  })();
+  </script>
+</div>
+
+        <!-- Slide 4: Helena Rubinstein — carousel 2 visuels -->
+<div class="carousel-slide">
+  <style>
+  .hele-carousel {
+    position: relative; width: 100%; height: 78vh; overflow: hidden; background: #0a0a0f;
+  }
+  .hele-track {
+    display: flex; height: 100%; transition: transform 0.7s cubic-bezier(0.77,0,0.175,1);
+  }
+  .hele-item {
+    min-width: 100%; height: 100%; position: relative; display: flex; align-items: center; justify-content: center;
+  }
+  .hele-item img {
+    width: 100%; height: 78vh; object-fit: contain; object-position: center; display: block; transition: transform 0.8s ease;
+  }
+  .hele-item.active img { transform: scale(1.015); }
+  .hele-format-badge {
+    position: absolute; top: 18px; right: 18px;
+    background: rgba(139,124,248,0.88); color: #fff;
+    font-family: 'Syne', sans-serif; font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 13px;
+    backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.15);
+  }
+  .hele-progress {
+    position: absolute; bottom: 0; left: 0; height: 2px;
+    background: #8B7CF8; width: 0%; transition: width 3.5s linear;
+  }
+  .hele-dots {
+    position: absolute; bottom: 52px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 8px; z-index: 5;
+  }
+  .hele-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.25); transition: all 0.25s; cursor: pointer;
+  }
+  .hele-dot.active { background: #8B7CF8; width: 20px; border-radius: 3px; }
+  .hele-nav {
+    position: absolute; top: 50%; left: 0; right: 0;
+    display: flex; justify-content: space-between; padding: 0 16px;
+    transform: translateY(-50%); pointer-events: none; z-index: 5;
+  }
+  .hele-nav-btn {
+    pointer-events: all; width: 34px; height: 34px;
+    background: rgba(8,8,13,0.6); border: 1px solid rgba(139,124,248,0.25);
+    color: #F0EEE8; font-size: 0.85rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; backdrop-filter: blur(4px);
+  }
+  .hele-nav-btn:hover { background: #8B7CF8; color: #08080d; border-color: #8B7CF8; }
+  </style>
+
+  <div class="hele-carousel" id="heleCarousel">
+    <div class="hele-track" id="heleTrack">
+      <div class="hele-item active">
+        <img src="Helena_Rubinstein_1.png" alt="Helena Rubinstein — Embrace the Year Empowered · Format paysage" loading="lazy">
+        <span class="hele-format-badge">Format paysage</span>
+      </div>
+      <div class="hele-item">
+        <img src="Helena_Rubinstein_2.png" alt="Helena Rubinstein — Embrace the Year Empowered · Format portrait" loading="lazy">
+        <span class="hele-format-badge">Format portrait</span>
+      </div>
+    </div>
+    <div class="hele-nav">
+      <button class="hele-nav-btn" id="helePrev">&#8592;</button>
+      <button class="hele-nav-btn" id="heleNext">&#8594;</button>
+    </div>
+    <div class="hele-dots" id="heleDots">
+      <span class="hele-dot active"></span>
+      <span class="hele-dot"></span>
+    </div>
+    <div class="hele-progress" id="heleProgress"></div>
+  </div>
+
+  <div class="slide-label">
+    <span class="slide-client">Helena Rubinstein — Embrace the Year Empowered</span>
+  </div>
+
+  <script>
+  (function() {
+    var ci = 0, total = 2;
+    var track = document.getElementById('heleTrack');
+    var dots = document.querySelectorAll('#heleDots .hele-dot');
+    var items = document.querySelectorAll('#heleCarousel .hele-item');
+    var progress = document.getElementById('heleProgress');
+    var timer;
+    function heleUpdate(idx) {
+      ci = (idx + total) % total;
+      track.style.transform = 'translateX(-' + (ci * 100) + '%)';
+      dots.forEach(function(d,i){ d.classList.toggle('active', i===ci); });
+      items.forEach(function(it,i){ it.classList.toggle('active', i===ci); });
+      progress.style.transition = 'none'; progress.style.width = '0%';
+      setTimeout(function(){ progress.style.transition = 'width 3.5s linear'; progress.style.width = '100%'; }, 30);
+    }
+    function startAuto() { clearInterval(timer); timer = setInterval(function(){ heleUpdate(ci+1); }, 3500); }
+    document.getElementById('heleNext').addEventListener('click', function(){ heleUpdate(ci+1); startAuto(); });
+    document.getElementById('helePrev').addEventListener('click', function(){ heleUpdate(ci-1); startAuto(); });
+    dots.forEach(function(d,i){ d.addEventListener('click', function(){ heleUpdate(i); startAuto(); }); });
+    heleUpdate(0); startAuto();
+  })();
+  </script>
+</div>
+
+        <!-- Slide 5: LVMH JO Paris 2024 — mini carousel 13 visuels -->
+<div class="carousel-slide">
+  <style>
+  .lvmh-carousel {
+    position: relative;
+    width: 100%;
+    height: 78vh;
+    overflow: hidden;
+    background: #0a0a0f;
+  }
+  .lvmh-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.7s cubic-bezier(0.77,0,0.175,1);
+  }
+  .lvmh-item {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lvmh-item img {
+    width: 100%;
+    height: 78vh;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    transition: transform 0.8s ease;
+  }
+  .lvmh-item.active img { transform: scale(1.015); }
+  .lvmh-format-badge {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: rgba(139,124,248,0.88);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 5px 13px;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .lvmh-progress {
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 2px;
+    background: #8B7CF8;
+    width: 0%;
+    transition: width 3.5s linear;
+  }
+  .lvmh-dots {
+    position: absolute;
+    bottom: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 5;
+  }
+  .lvmh-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .lvmh-dot.active {
+    background: #8B7CF8;
+    width: 20px;
+    border-radius: 3px;
+  }
+  .lvmh-nav {
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 5;
+  }
+  .lvmh-nav-btn {
+    pointer-events: all;
+    width: 34px; height: 34px;
+    background: rgba(8,8,13,0.6);
+    border: 1px solid rgba(139,124,248,0.25);
+    color: #F0EEE8;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    backdrop-filter: blur(4px);
+  }
+  .lvmh-nav-btn:hover { background: #8B7CF8; color: #08080d; border-color: #8B7CF8; }
+  .lvmh-counter-badge {
+    position: absolute;
+    bottom: 52px;
+    right: 18px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    color: rgba(240,238,232,0.4);
+    z-index: 5;
+  }
+  </style>
+
+  <div class="lvmh-carousel" id="lvmhCarousel">
+    <div class="lvmh-track" id="lvmhTrack">
+
+      <div class="lvmh-item active">
+        <img src="LVMH_Deroulede.png" alt="LVMH · Pauline Déroulède — Tennis Fauteuil" loading="lazy">
+        <span class="lvmh-format-badge">Pauline Déroulède · Tennis Fauteuil </span>
+      </div>
+      <div class="lvmh-item">
+        <img src="LVMH_H_Deroulede.png" alt="LVMH · Déroulède — Format H" loading="lazy">
+        <span class="lvmh-format-badge">Pauline Déroulède · Tennis Fauteuil</span>
+      </div>
+		<div class="lvmh-item">
+        <img src="LVMH_Dos_Santos.png" alt="LVMH · Mélanie de Jesus Dos Santos — Gym artistique" loading="lazy">
+        <span class="lvmh-format-badge">Mélanie Dos Santos · Gymnastique artistique</span>
+      </div>
+		<div class="lvmh-item">
+        <img src="LVMH_H_Dos_Santos.png" alt="LVMH · Dos Santos — Format H" loading="lazy">
+        <span class="lvmh-format-badge">Mélanie Dos Santos · Gymnastique artistique</span>
+      </div>
+      <div class="lvmh-item">
+        <img src="LVMH_Dupont.png" alt="LVMH · Antoine Dupont — Rugby à 7" loading="lazy">
+        <span class="lvmh-format-badge">Antoine Dupont · Rugby à 7</span>
+      </div>
+		<div class="lvmh-item">
+        <img src="LVMH_H_Dupont.png" alt="LVMH · Dupont — Format H" loading="lazy">
+        <span class="lvmh-format-badge">Antoine Dupont · Rugby à 7</span>
+      </div>
+      <div class="lvmh-item">
+        <img src="LVMH_Enzo_Lefort.png" alt="LVMH · Enzo Lefort — Escrime" loading="lazy">
+        <span class="lvmh-format-badge">Enzo Lefort · Escrime</span>
+      </div>
+		<div class="lvmh-item">
+        <img src="LVMH_H_Lefort.png" alt="LVMH · Lefort — Format H" loading="lazy">
+        <span class="lvmh-format-badge">Enzo Lefort · Escrime</span>
+      </div>
+      <div class="lvmh-item">
+        <img src="LVMH_Leon_Marchand.png" alt="LVMH · Léon Marchand — Natation" loading="lazy">
+        <span class="lvmh-format-badge">Leon Marchand · Natation</span>
+      </div>
+      <div class="lvmh-item">
+        <img src="LVMH_H_Marchand.png" alt="LVMH · Marchand — Format H" loading="lazy">
+        <span class="lvmh-format-badge">Leon Marchand · Natation</span>
+      </div>
+		<div class="lvmh-item">
+        <img src="LVMH_H_Patouillet.png" alt="LVMH · Marie Patouillet" loading="lazy">
+        <span class="lvmh-format-badge">Maud Patouillet · Cyclisme Paralympique</span>
+      </div>
+      <div class="lvmh-item">
+        <img src="LVMH_H_Medaille.png" alt="LVMH · Médaille — Nous avions rêvé grand" loading="lazy">
+        <span class="lvmh-format-badge">Médailles</span>
+      </div>
+      <div class="lvmh-item">
+        <img src="LVMH_H_Tous.png" alt="LVMH · À vos marques, prêts, rêvez" loading="lazy">
+        <span class="lvmh-format-badge">Égérie LVMH JO 2024</span>
+      </div>
+
+    </div>
+
+    <div class="lvmh-nav">
+      <button class="lvmh-nav-btn" id="lvmhPrev">&#8592;</button>
+      <button class="lvmh-nav-btn" id="lvmhNext">&#8594;</button>
+    </div>
+
+    <div class="lvmh-dots" id="lvmhDots">
+      <span class="lvmh-dot active"></span>
+      <span class="lvmh-dot"></span>
+      <span class="lvmh-dot"></span>
+      <span class="lvmh-dot"></span>
+      <span class="lvmh-dot"></span>
+      <span class="lvmh-dot"></span>
+      <span class="lvmh-dot"></span>
+      <span class="lvmh-dot"></span>
+      <span class="lvmh-dot"></span>
+      <span class="lvmh-dot"></span>
+      <span class="lvmh-dot"></span>
+      <span class="lvmh-dot"></span>
+      <span class="lvmh-dot"></span>
+    </div>
+
+    <span class="lvmh-counter-badge" id="lvmhCounter">1 / 13</span>
+    <div class="lvmh-progress" id="lvmhProgress"></div>
+  </div>
+
+  <div class="slide-label">
+    <span class="slide-client">LVMH
+		<p></p>Jeux Olympiques &amp; Paralympiques Paris 2024 
+		<li>Campagne affichage et presse
+	    <li>Plan média de 80 livraisons 
+		<p>dans presse nationale et magazine 
+			<p>sur deux semaines
+		<li>5 visuels différents
+		<li>Campagne d’affichage extérieure 
+			<p>complete avec 5 visuels
+		<li>Affichage sur Tour Montparnasse
+		<li>Pendant toute la durée des JO,
+		<p></p>organisation d’une cellule d’urgence
+		<p></p>en soirée car attente des résultats
+		<p></p>des sportifs pour parution dans la presse 
+		<p></p>quotidienne dès le lendemain. </span>
+  </div>
+
+  <script>
+  (function() {
+    var ci = 0;
+    var total = 13;
+    var track = document.getElementById('lvmhTrack');
+    var dots = document.querySelectorAll('#lvmhDots .lvmh-dot');
+    var items = document.querySelectorAll('#lvmhCarousel .lvmh-item');
+    var progress = document.getElementById('lvmhProgress');
+    var counter = document.getElementById('lvmhCounter');
+    var timer;
+
+    function lvmhUpdate(idx) {
+      ci = (idx + total) % total;
+      track.style.transform = 'translateX(-' + (ci * 100) + '%)';
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === ci); });
+      items.forEach(function(it, i) { it.classList.toggle('active', i === ci); });
+      counter.textContent = (ci + 1) + ' / ' + total;
+      progress.style.transition = 'none';
+      progress.style.width = '0%';
+      setTimeout(function() {
+        progress.style.transition = 'width 3.5s linear';
+        progress.style.width = '100%';
+      }, 30);
+    }
+
+    function startAuto() {
+      clearInterval(timer);
+      timer = setInterval(function() { lvmhUpdate(ci + 1); }, 3500);
+    }
+
+    document.getElementById('lvmhNext').addEventListener('click', function() { lvmhUpdate(ci + 1); startAuto(); });
+    document.getElementById('lvmhPrev').addEventListener('click', function() { lvmhUpdate(ci - 1); startAuto(); });
+    dots.forEach(function(d, i) {
+      d.addEventListener('click', function() { lvmhUpdate(i); startAuto(); });
+    });
+
+    lvmhUpdate(0);
+    startAuto();
+  })();
+  </script>
+</div>
+
+        <!-- Slide 6: La Poste Solutions Business — Log'issimo -->
+<div class="carousel-slide">
+  <style>
+  .laposte-carousel {
+    position: relative;
+    width: 100%;
+    height: 78vh;
+    overflow: hidden;
+    background: #0a0a0f;
+  }
+  .laposte-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.7s cubic-bezier(0.77,0,0.175,1);
+  }
+  .laposte-item {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .laposte-item img {
+    width: 100%;
+    height: 78vh;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    transition: transform 0.8s ease;
+  }
+  .laposte-item.active img { transform: scale(1.015); }
+  .laposte-format-badge {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: rgba(139,124,248,0.88);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 5px 13px;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .laposte-progress {
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 2px;
+    background: #8B7CF8;
+    width: 0%;
+    transition: width 3.5s linear;
+  }
+  .laposte-dots {
+    position: absolute;
+    bottom: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 5;
+  }
+  .laposte-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .laposte-dot.active {
+    background: #8B7CF8;
+    width: 20px;
+    border-radius: 3px;
+  }
+  .laposte-nav {
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 5;
+  }
+  .laposte-nav-btn {
+    pointer-events: all;
+    width: 34px; height: 34px;
+    background: rgba(8,8,13,0.6);
+    border: 1px solid rgba(139,124,248,0.25);
+    color: #F0EEE8;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    backdrop-filter: blur(4px);
+  }
+  .laposte-nav-btn:hover { background: #8B7CF8; color: #08080d; border-color: #8B7CF8; }
+  </style>
+
+  <div class="laposte-carousel" id="laposteCarousel">
+    <div class="laposte-track" id="laposteTrack">
+      <div class="laposte-item active">
+        <img src="La_Poste_1.png" alt="La Poste — Log'issimo Bretagne" loading="lazy">
+        <span class="laposte-format-badge">Bretagne — Paul Sainte Beuve</span>
+      </div>
+      <div class="laposte-item">
+        <img src="La_Poste_2.png" alt="La Poste — Log'issimo Auvergne-Rhône-Alpes" loading="lazy">
+        <span class="laposte-format-badge">Auvergne-Rhône-Alpes — Rémi Giraud</span>
+      </div>
+      <div class="laposte-item">
+        <img src="La_Poste_3.png" alt="La Poste — Log'issimo PACA" loading="lazy">
+        <span class="laposte-format-badge">Région PACA — Jérémy Bardot</span>
+      </div>
+      <div class="laposte-item">
+        <img src="La_Poste_4.png" alt="La Poste — Log'issimo Centre-Val de Loire" loading="lazy">
+        <span class="laposte-format-badge">Centre-Val de Loire — Dorothée Cousin</span>
+      </div>
+    </div>
+    <div class="laposte-nav">
+      <button class="laposte-nav-btn" id="lapostePrev">&#8592;</button>
+      <button class="laposte-nav-btn" id="laposteNext">&#8594;</button>
+    </div>
+    <div class="laposte-dots" id="laposteDots">
+      <span class="laposte-dot active"></span>
+      <span class="laposte-dot"></span>
+      <span class="laposte-dot"></span>
+      <span class="laposte-dot"></span>
+    </div>
+    <div class="laposte-progress" id="laposteProgress"></div>
+  </div>
+
+  <div class="slide-label">
+    <span class="slide-client">La Poste Solutions Business — Log'issimo
+      <p>Campagne affichage régionale</p>
+      <p>Déclinaisons par région et interlocuteur local</p>
+    </span>
+  </div>
+
+  <script>
+  (function() {
+    var ci = 0;
+    var total = 4;
+    var track = document.getElementById('laposteTrack');
+    var dots = document.querySelectorAll('#laposteDots .laposte-dot');
+    var items = document.querySelectorAll('#laposteCarousel .laposte-item');
+    var progress = document.getElementById('laposteProgress');
+    var timer;
+
+    function laposteUpdate(idx) {
+      ci = (idx + total) % total;
+      track.style.transform = 'translateX(-' + (ci * 100) + '%)';
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === ci); });
+      items.forEach(function(it, i) { it.classList.toggle('active', i === ci); });
+      progress.style.transition = 'none';
+      progress.style.width = '0%';
+      setTimeout(function() {
+        progress.style.transition = 'width 3.5s linear';
+        progress.style.width = '100%';
+      }, 30);
+    }
+
+    function startAuto() {
+      clearInterval(timer);
+      timer = setInterval(function() { laposteUpdate(ci + 1); }, 3500);
+    }
+
+    document.getElementById('laposteNext').addEventListener('click', function() { laposteUpdate(ci + 1); startAuto(); });
+    document.getElementById('lapostePrev').addEventListener('click', function() { laposteUpdate(ci - 1); startAuto(); });
+    dots.forEach(function(d, i) {
+      d.addEventListener('click', function() { laposteUpdate(i); startAuto(); });
+    });
+
+    laposteUpdate(0);
+    startAuto();
+  })();
+  </script>
+</div>
+
+        <!-- Slide 7: Crédit Mutuel — Campagne affichage -->
+<div class="carousel-slide">
+  <style>
+  .cm-carousel {
+    position: relative;
+    width: 100%;
+    height: 78vh;
+    overflow: hidden;
+    background: #0a0a0f;
+  }
+  .cm-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.7s cubic-bezier(0.77,0,0.175,1);
+  }
+  .cm-item {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cm-item img {
+    width: 100%;
+    height: 78vh;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    transition: transform 0.8s ease;
+  }
+  .cm-item.active img { transform: scale(1.015); }
+  .cm-format-badge {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: rgba(139,124,248,0.88);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 5px 13px;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .cm-progress {
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 2px;
+    background: #8B7CF8;
+    width: 0%;
+    transition: width 3.5s linear;
+  }
+  .cm-dots {
+    position: absolute;
+    bottom: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 5;
+  }
+  .cm-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .cm-dot.active {
+    background: #8B7CF8;
+    width: 20px;
+    border-radius: 3px;
+  }
+  .cm-nav {
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 5;
+  }
+  .cm-nav-btn {
+    pointer-events: all;
+    width: 34px; height: 34px;
+    background: rgba(8,8,13,0.6);
+    border: 1px solid rgba(139,124,248,0.25);
+    color: #F0EEE8;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    backdrop-filter: blur(4px);
+  }
+  .cm-nav-btn:hover { background: #8B7CF8; color: #08080d; border-color: #8B7CF8; }
+  </style>
+
+  <div class="cm-carousel" id="cmCarousel">
+    <div class="cm-track" id="cmTrack">
+      <div class="cm-item active">
+        <img src="Credit_mutuel_1.png" alt="Crédit Mutuel — Alternant dans une banque" loading="lazy">
+        <span class="cm-format-badge">Recrutement alternants</span>
+      </div>
+      <div class="cm-item">
+        <img src="Credit_mutuel_2.png" alt="Crédit Mutuel — Banque n°1 Relation Client" loading="lazy">
+        <span class="cm-format-badge">Podium Relation Client 2024</span>
+      </div>
+      <div class="cm-item">
+        <img src="Credit_mutuel_3.png" alt="Crédit Mutuel — Sans actionnaires" loading="lazy">
+        <span class="cm-format-badge">Banque coopérative</span>
+      </div>
+      <div class="cm-item">
+        <img src="Credit_mutuel_4.png" alt="Crédit Mutuel — Projet professionnel" loading="lazy">
+        <span class="cm-format-badge">Financement professionnel</span>
+      </div>
+      <div class="cm-item">
+        <img src="Credit_mutuel_5.png" alt="Crédit Mutuel — Crédit Vélo" loading="lazy">
+        <span class="cm-format-badge">Crédit d'intérêt sociétal — Vélo</span>
+      </div>
+      <div class="cm-item">
+        <img src="Credit_mutuel_6.png" alt="Crédit Mutuel — Assurance santé" loading="lazy">
+        <span class="cm-format-badge">Assurance santé — Avance frais</span>
+      </div>
+    </div>
+    <div class="cm-nav">
+      <button class="cm-nav-btn" id="cmPrev">&#8592;</button>
+      <button class="cm-nav-btn" id="cmNext">&#8594;</button>
+    </div>
+    <div class="cm-dots" id="cmDots">
+      <span class="cm-dot active"></span>
+      <span class="cm-dot"></span>
+      <span class="cm-dot"></span>
+      <span class="cm-dot"></span>
+      <span class="cm-dot"></span>
+      <span class="cm-dot"></span>
+    </div>
+    <div class="cm-progress" id="cmProgress"></div>
+  </div>
+
+  <div class="slide-label">
+    <span class="slide-client">Crédit Mutuel — Alliance Fédérale
+      <p>Campagne affichage et presse</p>
+      <p>Déclinaisons multi-formats et multi-offres</p>
+    </span>
+  </div>
+
+  <script>
+  (function() {
+    var ci = 0;
+    var total = 6;
+    var track = document.getElementById('cmTrack');
+    var dots = document.querySelectorAll('#cmDots .cm-dot');
+    var items = document.querySelectorAll('#cmCarousel .cm-item');
+    var progress = document.getElementById('cmProgress');
+    var timer;
+
+    function cmUpdate(idx) {
+      ci = (idx + total) % total;
+      track.style.transform = 'translateX(-' + (ci * 100) + '%)';
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === ci); });
+      items.forEach(function(it, i) { it.classList.toggle('active', i === ci); });
+      progress.style.transition = 'none';
+      progress.style.width = '0%';
+      setTimeout(function() {
+        progress.style.transition = 'width 3.5s linear';
+        progress.style.width = '100%';
+      }, 30);
+    }
+
+    function startAuto() {
+      clearInterval(timer);
+      timer = setInterval(function() { cmUpdate(ci + 1); }, 3500);
+    }
+
+    document.getElementById('cmNext').addEventListener('click', function() { cmUpdate(ci + 1); startAuto(); });
+    document.getElementById('cmPrev').addEventListener('click', function() { cmUpdate(ci - 1); startAuto(); });
+    dots.forEach(function(d, i) {
+      d.addEventListener('click', function() { cmUpdate(i); startAuto(); });
+    });
+
+    cmUpdate(0);
+    startAuto();
+  })();
+  </script>
+</div>
+
+      </div><!-- end track -->
+
+      <button class="carousel-btn prev" onclick="carouselMove(-1)" aria-label="Précédent">&#8592;</button>
+      <button class="carousel-btn next" onclick="carouselMove(1)" aria-label="Suivant">&#8594;</button>
+
+    </div><!-- end carousel-wrap -->
+
+    <!-- Dots -->
+    <div class="carousel-dots" id="carouselDots">
+      <button class="dot active" onclick="goToSlide(0)"></button>
+      <button class="dot" onclick="goToSlide(1)"></button>
+      <button class="dot" onclick="goToSlide(2)"></button>
+      <button class="dot" onclick="goToSlide(3)"></button>
+      <button class="dot" onclick="goToSlide(4)"></button>
+      <button class="dot" onclick="goToSlide(5)"></button>
+      <button class="dot" onclick="goToSlide(6)"></button>
+    </div>
+
+    <script>
+    (function() {
+      var current = 0;
+      var total = 7;
+      var track = document.getElementById('carouselTrack');
+      var dots = document.querySelectorAll('#carouselDots .dot');
+      var clientTabs = document.querySelectorAll('#clientTabs .client-tab');
+      var slides = document.querySelectorAll('#displayCarousel .carousel-slide');
+
+      function update() {
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        slides.forEach(function(s, i) { s.classList.toggle('active', i === current); });
+        dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+        clientTabs.forEach(function(t, i) { t.classList.toggle('active', i === current); });
+      }
+
+      window.carouselMove = function(dir) {
+        current = (current + dir + total) % total;
+        update();
+      };
+
+      window.goToSlide = function(idx) {
+        current = idx;
+        update();
+      };
+
+      // Keyboard
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowLeft') carouselMove(-1);
+        if (e.key === 'ArrowRight') carouselMove(1);
+      });
+
+      // Touch/swipe
+      var startX = 0;
+      var carousel = document.getElementById('displayCarousel');
+      carousel.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, {passive: true});
+      carousel.addEventListener('touchend', function(e) {
+        var diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) carouselMove(diff > 0 ? 1 : -1);
+      });
+    })();
+    </script>
+
+  </div>
+
+
+  <!-- TAB: MAGAZINE -->
+  <div class="tab-content" id="tab-magazine">
+
+  <div class="client-tabs" id="clientTabs_magazine">
+      <button class="client-tab active" onclick="goToSlide_magazine(0)">Maif — La Revue des Managers</button>
+      <button class="client-tab" onclick="goToSlide_magazine(1)">LVMH — En Apartés</button>
+      <button class="client-tab" onclick="goToSlide_magazine(2)">Renault Trucks — Optimum Magazine</button>
+      <button class="client-tab" onclick="goToSlide_magazine(3)">Leclerc Voyages — Brochure Collection</button>
+  </div>
+  <div class="carousel-wrap" id="carousel_magazine">
+    <div class="carousel-track" id="track_magazine">
+        <div class="carousel-slide active">
+          <img src="maif.png" alt="Maif — La Revue des Managers" loading="eager">
+          <div class="slide-label">
+			  <span class="slide-client">Maif — La Revue des Managers
+			  <p>Mensuel - 12 pages 
+			  <p>2 pics metal
+			  </p>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="LVMH_EnAparte.png" alt="LVMH — En Apartés" loading="eager">
+          <div class="slide-label">
+			  <span class="slide-client">LVMH — En Apartés
+			  <p>bi annuel - 48 pages
+		      <p>2 langues : FR et GB
+			  <p>dos carré cousu</p>
+		    </p>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="Renault_Trucks.png" alt="Renault Trucks — Optimum Magazine" loading="eager">
+          <div class="slide-label">
+			  <span class="slide-client">Renault Trucks — Optimum Magazine
+			  <p>Trimestriel - 32 pages
+		    <p>8 langues
+			  <p>dos carré collé
+			  </p>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="Leclerc_Voyages.png" alt="Leclerc Voyages — Brochure Collection" loading="lazy">
+          <div class="slide-label">
+            <span class="slide-client">Leclerc Voyages — Brochure Collection
+			  <p>Brochure bi-annuelle
+		    <p>208 pages
+			  <p>Dos carré collé
+			  <p>Réalisée sur plateforme collaborative
+			  <p>Mise en page automatique
+			  <p>Workflow mis à jour en temps réel
+    </p>
+			  </span>
+          </div>
+        </div>
+    </div>
+    <button class="carousel-btn prev" onclick="carouselMove_magazine(-1)">&#8592;</button>
+    <button class="carousel-btn next" onclick="carouselMove_magazine(1)">&#8594;</button>
+  </div>
+  <div class="carousel-dots" id="dots_magazine">
+      <button class="dot active" onclick="goToSlide_magazine(0)"></button>
+      <button class="dot" onclick="goToSlide_magazine(1)"></button>
+      <button class="dot" onclick="goToSlide_magazine(2)"></button>
+      <button class="dot" onclick="goToSlide_magazine(3)"></button>
+  </div>
+  <script>
+  (function(){
+    var cur=0, tot=4;
+    var track=document.getElementById('track_magazine');
+    var dots=document.querySelectorAll('#dots_magazine .dot');
+    var tabs=document.querySelectorAll('#clientTabs_magazine .client-tab');
+    var slides=document.querySelectorAll('#carousel_magazine .carousel-slide');
+    function upd(){
+      track.style.transform='translateX(-'+(cur*100)+'%)';
+      slides.forEach(function(s,i){s.classList.toggle('active',i===cur);});
+      dots.forEach(function(d,i){d.classList.toggle('active',i===cur);});
+      tabs.forEach(function(t,i){t.classList.toggle('active',i===cur);});
+    }
+    window.carouselMove_magazine=function(dir){cur=(cur+dir+tot)%tot;upd();};
+    window.goToSlide_magazine=function(idx){cur=idx;upd();};
+    document.addEventListener('keydown',function(e){
+      var tab=document.getElementById('tab-magazine');
+      if(!tab||!tab.classList.contains('active'))return;
+      if(e.key==='ArrowLeft')carouselMove_magazine(-1);
+      if(e.key==='ArrowRight')carouselMove_magazine(1);
+    });
+    var startX=0,wrap=document.getElementById('carousel_magazine');
+    wrap.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;},{passive:true});
+    wrap.addEventListener('touchend',function(e){
+      var diff=startX-e.changedTouches[0].clientX;
+      if(Math.abs(diff)>50)carouselMove_magazine(diff>0?1:-1);
+    });
+  })();
+  </script>
+
+
+  </div>
+
+  <!-- TAB: PHARMA -->
+  <div class="tab-content" id="tab-pharma">
+
+  <div class="client-tabs" id="clientTabs_pharma">
+      <button class="client-tab active" onclick="goToSlide_pharma(0)">Doliprane — Remis Médecin · Sanofi</button>
+      <button class="client-tab" onclick="goToSlide_pharma(1)">Rybrevant — Fiche Posologique · J&amp;J</button>
+      <button class="client-tab" onclick="goToSlide_pharma(2)">Dupixent — Mécanisme d'action · Sanofi</button>
+      <button class="client-tab" onclick="goToSlide_pharma(3)">Sanofi BPCO · Rybrevant Guide Pratique</button>
+      <button class="client-tab" onclick="goToSlide_pharma(4)">Novartis Cosentyx — Stand Parapluie 2960×2280mm</button>
+      <button class="client-tab" onclick="goToSlide_pharma(5)">Johnson &amp; Johnson — Roll-up Kakémonos 800×2000mm</button>
+  </div>
+  <div class="carousel-wrap" id="carousel_pharma">
+    <div class="carousel-track" id="track_pharma">
+        <div class="carousel-slide active">
+          <img src="doliprane.png"
+			   alt="Doliprane — Remis Médecin · Sanofi" loading="eager">
+          <div class="slide-label">
+            <span class="slide-client">Doliprane — Remis Médecin · Sanofi</span>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="Rybrevant.png" 
+			   alt="Rybrevant — Fiche Posologique · J&amp;J" loading="lazy">
+          <div class="slide-label">
+            <span class="slide-client">Rybrevant — Fiche Posologique · J&amp;J</span>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="dupixent.png" 
+			   alt="Dupixent — Mécanisme d'action · Sanofi" loading="lazy">
+          <div class="slide-label">
+            <span class="slide-client">Dupixent — Mécanisme d'action · Sanofi</span>
+            <span class="slide-counter">03 / 06</span>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="Sanofi_BPCO.png" 
+			   alt="Sanofi BPCO · Rybrevant Guide Pratique" loading="lazy">
+          <div class="slide-label">
+            <span class="slide-client">Sanofi BPCO</span>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="NOVA_2407204_Stand_parapluie_2960x2280mm_AuQuart.png" 
+			   alt="Novartis Cosentyx — Stand Parapluie 2960×2280mm" loading="lazy">
+          <div class="slide-label">
+            <span class="slide-client">Novartis Cosentyx — Stand Parapluie 2960×2280mm</span>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="Kakemonos_Rollup.png" 
+			   alt="Johnson &amp; Johnson — Roll-up Kakémonos 800×2000mm" loading="lazy">
+          <div class="slide-label">
+            <span class="slide-client">Johnson &amp; Johnson — Roll-up Kakémonos 800×2000mm</span>
+            <span class="slide-counter">06 / 06</span>
+          </div>
+        </div>
+    </div>
+    <button class="carousel-btn prev" onclick="carouselMove_pharma(-1)">&#8592;</button>
+    <button class="carousel-btn next" onclick="carouselMove_pharma(1)">&#8594;</button>
+  </div>
+  <div class="carousel-dots" id="dots_pharma">
+      <button class="dot active" onclick="goToSlide_pharma(0)"></button>
+      <button class="dot" onclick="goToSlide_pharma(1)"></button>
+      <button class="dot" onclick="goToSlide_pharma(2)"></button>
+      <button class="dot" onclick="goToSlide_pharma(3)"></button>
+      <button class="dot" onclick="goToSlide_pharma(4)"></button>
+      <button class="dot" onclick="goToSlide_pharma(5)"></button>
+  </div>
+  <script>
+  (function(){
+    var cur=0, tot=6;
+    var track=document.getElementById('track_pharma');
+    var dots=document.querySelectorAll('#dots_pharma .dot');
+    var tabs=document.querySelectorAll('#clientTabs_pharma .client-tab');
+    var slides=document.querySelectorAll('#carousel_pharma .carousel-slide');
+    function upd(){
+      track.style.transform='translateX(-'+(cur*100)+'%)';
+      slides.forEach(function(s,i){s.classList.toggle('active',i===cur);});
+      dots.forEach(function(d,i){d.classList.toggle('active',i===cur);});
+      tabs.forEach(function(t,i){t.classList.toggle('active',i===cur);});
+    }
+    window.carouselMove_pharma=function(dir){cur=(cur+dir+tot)%tot;upd();};
+    window.goToSlide_pharma=function(idx){cur=idx;upd();};
+    document.addEventListener('keydown',function(e){
+      var tab=document.getElementById('tab-pharma');
+      if(!tab||!tab.classList.contains('active'))return;
+      if(e.key==='ArrowLeft')carouselMove_pharma(-1);
+      if(e.key==='ArrowRight')carouselMove_pharma(1);
+    });
+    var startX=0,wrap=document.getElementById('carousel_pharma');
+    wrap.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;},{passive:true});
+    wrap.addEventListener('touchend',function(e){
+      var diff=startX-e.changedTouches[0].clientX;
+      if(Math.abs(diff)>50)carouselMove_pharma(diff>0?1:-1);
+    });
+  })();
+  </script>
+
+  </div>
+
+  <!-- TAB: RAPPORTS -->
+  <div class="tab-content" id="tab-rapports">
+
+  <div class="client-tabs" id="clientTabs_rapports">
+      <button class="client-tab active" onclick="goToSlide_rapports(0)">LVMH — Rapport Annuel 2019 · 152 pages</button>
+      <button class="client-tab" onclick="goToSlide_rapports(1)">Groupe Renault — Rapport Annuel 2019 · 80 pages</button>
+      <button class="client-tab" onclick="goToSlide_rapports(2)">Dassault Systèmes — Rapport Annuel 2021 · 54 pages</button>
+      <button class="client-tab" onclick="goToSlide_rapports(3)">Vivendi — Rapport Annuel 2020 · 404 pages</button>
+  </div>
+  <div class="carousel-wrap" id="carousel_rapports">
+    <div class="carousel-track" id="track_rapports">
+        <div class="carousel-slide active">
+          <img src="RA_LVMH.png" 
+			   alt="LVMH — Rapport Annuel 2019 · 152 pages" loading="eager">
+          <div class="slide-label">
+            <span class="slide-client">LVMH — Rapport Annuel 2019 · 152 pages</span>
+            <span class="slide-counter">01 / 04</span>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="RA_Renault.png" alt="Groupe Renault — Rapport Annuel 2019 · 80 pages" loading="lazy">
+          <div class="slide-label">
+            <span class="slide-client">Groupe Renault — Rapport Annuel 2019 · 80 pages</span>
+            <span class="slide-counter">02 / 04</span>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="RA_Dassault.png" alt="Dassault Systèmes — Rapport Annuel 2021 · 54 pages" loading="lazy">
+          <div class="slide-label">
+            <span class="slide-client">Dassault Systèmes — Rapport Annuel 2021 · 54 pages</span>
+            <span class="slide-counter">03 / 04</span>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="RA_Vivendi.png" alt="Vivendi — Rapport Annuel 2020 · 404 pages" loading="lazy">
+          <div class="slide-label">
+            <span class="slide-client">Vivendi — Rapport Annuel 2020 · 404 pages</span>
+            <span class="slide-counter">04 / 04</span>
+          </div>
+        </div>
+    </div>
+    <button class="carousel-btn prev" onclick="carouselMove_rapports(-1)">&#8592;</button>
+    <button class="carousel-btn next" onclick="carouselMove_rapports(1)">&#8594;</button>
+  </div>
+  <div class="carousel-dots" id="dots_rapports">
+      <button class="dot active" onclick="goToSlide_rapports(0)"></button>
+      <button class="dot" onclick="goToSlide_rapports(1)"></button>
+      <button class="dot" onclick="goToSlide_rapports(2)"></button>
+      <button class="dot" onclick="goToSlide_rapports(3)"></button>
+  </div>
+  <script>
+  (function(){
+    var cur=0, tot=4;
+    var track=document.getElementById('track_rapports');
+    var dots=document.querySelectorAll('#dots_rapports .dot');
+    var tabs=document.querySelectorAll('#clientTabs_rapports .client-tab');
+    var slides=document.querySelectorAll('#carousel_rapports .carousel-slide');
+    function upd(){
+      track.style.transform='translateX(-'+(cur*100)+'%)';
+      slides.forEach(function(s,i){s.classList.toggle('active',i===cur);});
+      dots.forEach(function(d,i){d.classList.toggle('active',i===cur);});
+      tabs.forEach(function(t,i){t.classList.toggle('active',i===cur);});
+    }
+    window.carouselMove_rapports=function(dir){cur=(cur+dir+tot)%tot;upd();};
+    window.goToSlide_rapports=function(idx){cur=idx;upd();};
+    document.addEventListener('keydown',function(e){
+      var tab=document.getElementById('tab-rapports');
+      if(!tab||!tab.classList.contains('active'))return;
+      if(e.key==='ArrowLeft')carouselMove_rapports(-1);
+      if(e.key==='ArrowRight')carouselMove_rapports(1);
+    });
+    var startX=0,wrap=document.getElementById('carousel_rapports');
+    wrap.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;},{passive:true});
+    wrap.addEventListener('touchend',function(e){
+      var diff=startX-e.changedTouches[0].clientX;
+      if(Math.abs(diff)>50)carouselMove_rapports(diff>0?1:-1);
+    });
+  })();
+  </script>
+
+  </div>
+
+<!-- CLIENTS -->
+<section id="clients">
+  <div class="section-header reveal">
+    <div>
+      <span class="section-tag">Références</span>
+      <h2 class="section-title">Clients &amp; marques<br>accompagnés</h2>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="clients-marquee-wrap">
+    <div class="clients-marquee">
+      <span>LVMH</span><span>•</span>
+      <span>Canal+</span><span>•</span>
+      <span>Renault</span><span>•</span>
+      <span>Dior</span><span>•</span>
+      <span>Louis Vuitton</span><span>•</span>
+      <span>Alpine</span><span>•</span>
+      <span>Sanofi</span><span>•</span>
+      <span>Novartis</span><span>•</span>
+      <span>MSD</span><span>•</span>
+      <span>Johnson &amp; Johnson</span><span>•</span>
+      <span>Lilly</span><span>•</span>
+      <span>Leclerc</span><span>•</span>
+      <span>Lacoste</span><span>•</span>
+      <span>Van Cleef &amp; Arpels</span><span>•</span>
+      <span>Maif</span><span>•</span>
+      <span>Dassault Systèmes</span><span>•</span>
+      <span>Vivendi</span><span>•</span>
+      <span>Renault Trucks</span><span>•</span>
+      <span>La Banque Postale</span><span>•</span>
+      <span>La Poste</span><span>•</span>
+      <span>Air France</span><span>•</span>
+      <span>Helena Rubinstein</span><span>•</span>
+      <!-- Repeat for seamless loop -->
+      <span>LVMH</span><span>•</span>
+      <span>Canal+</span><span>•</span>
+      <span>Renault</span><span>•</span>
+      <span>Dior</span><span>•</span>
+      <span>Louis Vuitton</span><span>•</span>
+      <span>Alpine</span><span>•</span>
+      <span>Sanofi</span><span>•</span>
+      <span>Novartis</span><span>•</span>
+      <span>MSD</span><span>•</span>
+      <span>Johnson &amp; Johnson</span><span>•</span>
+      <span>Lilly</span><span>•</span>
+      <span>Leclerc</span><span>•</span>
+      <span>Lacoste</span><span>•</span>
+      <span>Van Cleef &amp; Arpels</span><span>•</span>
+      <span>Maif</span><span>•</span>
+      <span>Dassault Systèmes</span><span>•</span>
+      <span>Vivendi</span><span>•</span>
+      <span>Renault Trucks</span><span>•</span>
+      <span>La Banque Postale</span><span>•</span>
+      <span>La Poste</span><span>•</span>
+      <span>Air France</span><span>•</span>
+      <span>Helena Rubinstein</span><span>•</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <p class="contact-eyebrow reveal">Contact</p>
+    <h2 class="contact-title reveal">Travaillons<br>ensemble.</h2>
+    <p class="contact-sub reveal">
+      Disponible pour des missions de chef de studio, directeur de production 
+      ou responsable studio graphique — print, digital ou multisite.
+    </p>
+
+    <div class="contact-cards">
+      <a href="tel:+33622377520" class="contact-card reveal">
+        <div class="contact-card-label">Téléphone</div>
+        <div class="contact-card-value">+33 6 22 37 75 20</div>
+      </a>
+      <a href="mailto:olivier.prearo@gmail.com" class="contact-card reveal reveal-delay-1">
+        <div class="contact-card-label">Email</div>
+        <div class="contact-card-value">olivier.prearo@gmail.com</div>
+      </a>
+      <a href="https://linkedin.com/in/olivier-prearo-17195241" target="_blank" class="contact-card reveal reveal-delay-2">
+        <div class="contact-card-label">LinkedIn</div>
+        <div class="contact-card-value">olivier-prearo-17195241</div>
+      </a>
+      <div class="contact-card reveal reveal-delay-3">
+        <div class="contact-card-label">Localisation</div>
+        <div class="contact-card-value">Rueil-Malmaison, 92</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Olivier PREARO — Chef de Studio &amp; Directeur de Production</p>
+  <div class="footer-lang">
+    <span class="lang-badge">🇫🇷 Français <strong>Natif</strong></span>
+    <span class="lang-badge">🇬🇧 Anglais <strong>B1</strong></span>
+    <span class="lang-badge">🇮🇹 Italien <strong>C2</strong></span>
+  </div>
+</footer>
+
+<script>
+// Nav scroll effect
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Hero bg animation
+window.addEventListener('load', () => {
+  const heroBg = document.getElementById('heroBg');
+  heroBg.style.backgroundImage = "url('Accueil.png')";
+  setTimeout(() => heroBg.classList.add('loaded'), 100);
+});
+
+// Tabs
+function showTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
