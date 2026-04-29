@@ -852,7 +852,7 @@
       </p>
       <p>
         J'allie <span class="highlight">management d'équipe, sens de l'organisation, rapidité d'exécution</span> 
-        et parfaite maîtrise des outils de production pour garantir une création graphique fiable 
+        et parfaite maîtrise des outils de production pour garantir une création graphique fiable, fluide 
         et de haute qualité.
       </p>
       <p>
@@ -874,8 +874,9 @@
           <span class="pill">Illustrator</span>
           <span class="pill">Acrobat</span>
           <span class="pill">Mise en page automatique</span>
-          <span class="pill">Plateforme Pomelo / Viva</span>
-          <span class="pill">Workflow multi-site</span>
+          <span class="pill">Plateforme Pomelo</span>
+          <span class="pill">Création et optimisation de Workflow multi-site</span>
+		  <span class="pill">Gestion des couleurs et profils ICC</span>
         </div>
       </div>
 
@@ -896,7 +897,7 @@
         <h4>Management &amp; Soft skills</h4>
         <div class="skill-pills">
           <span class="pill">Planification multi-site</span>
-          <span class="pill">Leadership d'équipe</span>
+          <span class="pill">Leadership et esprit d'équipe</span>
           <span class="pill">Gestion du stress</span>
           <span class="pill">Sens du détail</span>
           <span class="pill">Adaptabilité</span>
@@ -907,7 +908,7 @@
       <div class="skill-group reveal reveal-delay-3">
         <h4>Langues</h4>
         <div class="skill-pills">
-          <span class="pill">🇫🇷 Français — Natif</span>
+          <span class="pill">🇫🇷 Français — Langue Maternelle</span>
           <span class="pill">🇬🇧 Anglais — B1</span>
           <span class="pill">🇮🇹 Italien — C2</span>
         </div>
@@ -927,11 +928,13 @@
           <div class="timeline-company">Havas Factory</div>
           <ul class="timeline-desc">
             <li>Piloter la production graphique du studio (print, digital, social media)</li>
-            <li>Planifier et coordonner le travail des équipes créatives</li>
+            <li>Planifier et coordonner le travail des équipes</li>
             <li>Garantir la qualité, la cohérence et la conformité des livrables</li>
-            <li>Gérer les workflows de production et optimiser les délais</li>
+			<li>Gerer des pics d'activité et prioriser les urgences</li>
             <li>Assurer la liaison entre équipes commerciales, créatives et techniques</li>
-            <li>Superviser les prestataires externes et freelances</li>
+            <li>Qualification et supervision de freelances maquettistes, retoucheurs et graveurs</li>
+			<li>Contrôle qualité</li>
+			<li>Mise en place et amélioration continue des workflows de production (briefs, révisions, validation, livraison)</li>
           </ul>
         </div>
       </div>
@@ -951,7 +954,7 @@
         <div class="timeline-dates">1998<br>→ 2000</div>
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <h3>Monteur / Caméaraman</h3>
+          <h3>Monteur / Caméraman</h3>
           <div class="timeline-company">OP Production</div>
           <ul class="timeline-desc">
             <li>Production audiovisuelle, montage et prise de vues</li>
@@ -1036,8 +1039,60 @@
       font-size: 0.9rem;
       color: rgba(240,238,232,0.4);
     }
-
-    /* Navigation arrows */
+		
+/* ── INFO PANEL ──────────────────────────────────────────── */
+    .info-panel {
+      background: linear-gradient(135deg, #0d0d1a 0%, #10101f 100%);
+      border-top: 1px solid rgba(139,124,248,0.18);
+      padding: 24px 52px;
+      transition: opacity 0.22s ease;
+    }
+    .info-panel.fading { opacity: 0; }
+    .info-panel-inner {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      max-width: 1200px;
+    }
+    .info-panel-bar {
+      width: 3px; min-height: 48px;
+      background: linear-gradient(180deg, #8B7CF8 0%, rgba(139,124,248,0.1) 100%);
+      border-radius: 2px; flex-shrink: 0;
+    }
+    .info-panel-left { min-width: 220px; flex-shrink: 0; }
+    .info-panel-tag {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.52rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: #8B7CF8;
+      margin-bottom: 6px;
+    }
+    .info-panel-client {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      letter-spacing: 0.02em; color: #F0EEE8;
+      line-height: 1.2;
+    }
+    .info-panel-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 0.88rem;
+      color: rgba(240,238,232,0.42); margin-top: 4px;
+    }
+    .info-panel-sep {
+      width: 1px; min-height: 44px;
+      background: rgba(139,124,248,0.18); flex-shrink: 0;
+    }
+    .info-panel-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem; line-height: 1.8;
+      color: rgba(240,238,232,0.48); font-weight: 300;
+    }
+    .info-panel-desc strong {
+      color: rgba(240,238,232,0.82); font-weight: 500;
+    }
+    .info-panel-desc .bullet::before { content: '·'; margin: 0 6px; color: rgba(139,124,248,0.5); }
+  
+		
+	/* Navigation arrows */
     .carousel-btn {
       position: absolute;
       top: 50%;
@@ -1258,11 +1313,20 @@
     <div class="canp-progress" id="canpProgress"></div>
   </div>
 
-  <div class="slide-label">
-    <span class="slide-client">Canal+ — Validé Saison 3 · Déclinaisons formats affichage</span>
-  </div>
-
-  <script>
+	<div class="info-panel" id="infoPanel_display">
+      <div class="info-panel-inner">
+        <div class="info-panel-bar"></div>
+        <div class="info-panel-left">
+          <div class="info-panel-tag">Display · Affichage · PLV</div>
+          <div class="info-panel-client" id="infoClient_display">Canal+</div>
+          <div class="info-panel-sub" id="infoSub_display">Validé Saison 3</div>
+        </div>
+        <div class="info-panel-sep"></div>
+        <div class="info-panel-desc" id="infoDesc_display">Déclinaisons multi-formats <strong>affichage - plan presse national</strong> <span class="bullet"></span></div>
+      </div>
+    </div>
+	
+   <script>
   (function() {
     var ci = 0;
     var total = 3;
@@ -1425,11 +1489,20 @@
     <div class="laco-progress" id="lacoProgress"></div>
   </div>
 
-  <div class="slide-label">
-    <span class="slide-client">Lacoste</span>
-  </div>
-
-  <script>
+	<div class="info-panel" id="infoPanel_display">
+      <div class="info-panel-inner">
+        <div class="info-panel-bar"></div>
+        <div class="info-panel-left">
+          <div class="info-panel-tag">Display · Affichage · PLV</div>
+          <div class="info-panel-client" id="infoClient_display">Lacoste</div>
+          <div class="info-panel-sub" id="infoSub_display">Campagne Pierre Niney et Céline Boutier</div>
+        </div>
+        <div class="info-panel-sep"></div>
+        <div class="info-panel-desc" id="infoDesc_display">Déclinaisons multi-formats <strong>affichage - plan presse national et international</strong> <span class="bullet"></div>
+      </div>
+    </div>
+	
+    <script>
   (function() {
     var ci = 0;
     var total = 2;
@@ -1542,11 +1615,20 @@
     <div class="alpi-progress" id="alpiProgress"></div>
   </div>
 
-  <div class="slide-label">
-    <span class="slide-client">Alpine — A290 / A390</span>
-  </div>
-
-  <script>
+	<div class="info-panel" id="infoPanel_display">
+      <div class="info-panel-inner">
+        <div class="info-panel-bar"></div>
+        <div class="info-panel-left">
+          <div class="info-panel-tag">Display · Affichage · PLV</div>
+          <div class="info-panel-client" id="infoClient_display">Alpine</div>
+          <div class="info-panel-sub" id="infoSub_display">Lancement A290 et A390</div>
+        </div>
+        <div class="info-panel-sep"></div>
+        <div class="info-panel-desc" id="infoDesc_display">Déclinaisons multi-formats <strong>affichage - plan presse national et international</strong> <span class="bullet"></div>
+      </div>
+    </div>
+		
+   <script>
   (function() {
     var ci = 0, total = 2;
     var track = document.getElementById('alpiTrack');
@@ -1643,11 +1725,20 @@
     </div>
     <div class="hele-progress" id="heleProgress"></div>
   </div>
-
-  <div class="slide-label">
-    <span class="slide-client">Helena Rubinstein — Embrace the Year Empowered</span>
-  </div>
-
+	
+<div class="info-panel" id="infoPanel_display">
+      <div class="info-panel-inner">
+        <div class="info-panel-bar"></div>
+        <div class="info-panel-left">
+          <div class="info-panel-tag">Display · Affichage · PLV</div>
+          <div class="info-panel-client" id="infoClient_display">Héléna Rubinstein</div>
+          <div class="info-panel-sub" id="infoSub_display">Replasty Age Recovery</div>
+        </div>
+        <div class="info-panel-sep"></div>
+        <div class="info-panel-desc" id="infoDesc_display"><strong>Création de Master Hauteur et largeur</strong> <p>Déclinaisons presses faites directement par les pays</p><span class="bullet"></div>
+      </div>
+    </div>
+	
   <script>
   (function() {
     var ci = 0, total = 2;
@@ -1865,26 +1956,26 @@
     <span class="lvmh-counter-badge" id="lvmhCounter">1 / 13</span>
     <div class="lvmh-progress" id="lvmhProgress"></div>
   </div>
-
-  <div class="slide-label">
-    <span class="slide-client">LVMH
-		<p></p>Jeux Olympiques &amp; Paralympiques Paris 2024 
-		<li>Campagne affichage et presse
-	    <li>Plan média de 80 livraisons 
-		<p>dans presse nationale et magazine 
-			<p>sur deux semaines
-		<li>5 visuels différents
-		<li>Campagne d’affichage extérieure 
-			<p>complete avec 5 visuels
-		<li>Affichage sur Tour Montparnasse
-		<li>Pendant toute la durée des JO,
-		<p></p>organisation d’une cellule d’urgence
-		<p></p>en soirée car attente des résultats
-		<p></p>des sportifs pour parution dans la presse 
-		<p></p>quotidienne dès le lendemain. </span>
-  </div>
-
-  <script>
+	
+<div class="info-panel" id="infoPanel_display">
+      <div class="info-panel-inner">
+        <div class="info-panel-bar"></div>
+        <div class="info-panel-left">
+          <div class="info-panel-tag">Display · Affichage · PLV</div>
+          <div class="info-panel-client" id="infoClient_display">LVMH</div>
+          <div class="info-panel-sub" id="infoSub_display">Jeux Olympiques et Paralympiques Paris 2024</div>
+        </div>
+        <div class="info-panel-sep"></div>
+        <div class="info-panel-desc" id="infoDesc_display"><strong>Affichage - plan presse national</strong> 
+			<li>80 livraisons dans presse nationale et magazine sur deux semaines</li> 
+			<li>organisation d’une cellule d’urgence dépendante des résultats des sportifs pour parution dans la presse quotidienne dès le lendemain.</li> 
+			<li>5 visuels différents</li>
+			<li>Campagne d’affichage extérieure complete avec 5 visuels et habillage fresque Tour Montparnasse</li>
+		<span class="bullet"></div>
+      </div>
+    </div>
+	
+    <script>
   (function() {
     var ci = 0;
     var total = 13;
@@ -2058,15 +2149,23 @@
     </div>
     <div class="laposte-progress" id="laposteProgress"></div>
   </div>
-
-  <div class="slide-label">
-    <span class="slide-client">La Poste Solutions Business — Log'issimo
-      <p>Campagne affichage régionale</p>
-      <p>Déclinaisons par région et interlocuteur local</p>
-    </span>
-  </div>
-
-  <script>
+	
+<div class="info-panel" id="infoPanel_display">
+      <div class="info-panel-inner">
+        <div class="info-panel-bar"></div>
+        <div class="info-panel-left">
+          <div class="info-panel-tag">Display · Affichage · PLV</div>
+          <div class="info-panel-client" id="infoClient_display">La Poste Solutions Business</div>
+          <div class="info-panel-sub" id="infoSub_display">Log'issimo</div>
+        </div>
+        <div class="info-panel-sep"></div>
+        <div class="info-panel-desc" id="infoDesc_display"><strong>Campagne presse locale</strong> 
+			<p>Déclinaisons par région et interlocuteur local</p>
+		<span class="bullet"></div>
+      </div>
+    </div>
+	
+   <script>
   (function() {
     var ci = 0;
     var total = 4;
@@ -2248,14 +2347,20 @@
     </div>
     <div class="cm-progress" id="cmProgress"></div>
   </div>
-
-  <div class="slide-label">
-    <span class="slide-client">Crédit Mutuel — Alliance Fédérale
-      <p>Campagne affichage et presse</p>
-      <p>Déclinaisons multi-formats et multi-offres</p>
-    </span>
-  </div>
-
+	
+<div class="info-panel" id="infoPanel_display">
+      <div class="info-panel-inner">
+        <div class="info-panel-bar"></div>
+        <div class="info-panel-left">
+          <div class="info-panel-tag">Display · Affichage · PLV</div>
+          <div class="info-panel-client" id="infoClient_display">Crédit Mutuel</div>
+          <div class="info-panel-sub" id="infoSub_display">Campagne Affichage</div>
+        </div>
+        <div class="info-panel-sep"></div>
+        <div class="info-panel-desc" id="infoDesc_display"><strong>affichage Instore
+		<span class="bullet"></div>
+      </div>
+    </div>
   <script>
   (function() {
     var ci = 0;
@@ -2312,7 +2417,8 @@
       <button class="dot" onclick="goToSlide(4)"></button>
       <button class="dot" onclick="goToSlide(5)"></button>
       <button class="dot" onclick="goToSlide(6)"></button>
-    </div>
+    
+	
 
     <script>
     (function() {
@@ -2358,7 +2464,7 @@
     </script>
 
   </div>
-
+</div>
 
   <!-- TAB: MAGAZINE -->
   <div class="tab-content" id="tab-magazine">
@@ -2736,7 +2842,7 @@
 <footer>
   <p>© 2025 Olivier PREARO — Chef de Studio &amp; Directeur de Production</p>
   <div class="footer-lang">
-    <span class="lang-badge">🇫🇷 Français <strong>Natif</strong></span>
+    <span class="lang-badge">🇫🇷 Français <strong>Langue Maternelle</strong></span>
     <span class="lang-badge">🇬🇧 Anglais <strong>B1</strong></span>
     <span class="lang-badge">🇮🇹 Italien <strong>C2</strong></span>
   </div>
