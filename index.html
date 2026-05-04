@@ -2467,171 +2467,283 @@
 </div>
 
   <!-- TAB: MAGAZINE -->
-  <div class="tab-content" id="tab-magazine">
+  
+			
+	<div class="tab-content" id="tab-magazine">
 
   <div class="client-tabs" id="clientTabs_magazine">
-      <button class="client-tab active" onclick="goToSlide_magazine(0)">Maif — La Revue des Managers</button>
-      <button class="client-tab" onclick="goToSlide_magazine(1)">LVMH — En Apartés</button>
-      <button class="client-tab" onclick="goToSlide_magazine(2)">Renault Trucks — Optimum Magazine</button>
-      <button class="client-tab" onclick="goToSlide_magazine(3)">Leclerc Voyages — Brochure Collection</button>
+    <button class="client-tab active" onclick="goToSlide_magazine(0)">Maif — La Revue des Managers</button>
+    <button class="client-tab" onclick="goToSlide_magazine(1)">LVMH — En Apartés</button>
+    <button class="client-tab" onclick="goToSlide_magazine(2)">Renault Trucks — Optimum Magazine</button>
+    <button class="client-tab" onclick="goToSlide_magazine(3)">Leclerc Voyages — Brochure Collection</button>
   </div>
-  <div class="carousel-wrap" id="carousel_magazine">
-    <div class="carousel-track" id="track_magazine">
-        <div class="carousel-slide active">
-          <img src="Maif.png" alt="Maif — La Revue des Managers" loading="eager">
-          <div class="slide-label">
-			  <span class="slide-client">Maif — La Revue des Managers
-			  <p>Mensuel - 12 pages 
-			  <p>2 pics metal
-			  </p>
+
+  <div id="magazineCarousel" style="position:relative; overflow:hidden;">
+    <div id="magazineTrack" style="display:flex; transition: transform 0.7s cubic-bezier(0.77,0,0.175,1);">
+
+      <!-- SLIDE 0 : MAIF -->
+      <div class="carousel-slide" style="min-width:100%;">
+        <div class="maif-carousel" id="maifCarousel">
+          <div class="maif-track" id="maifTrack">
+            <div class="maif-item active">
+              <img src="Maif.png" alt="MAIF — La revue des managers">
+            </div>
+          </div>
+          <div class="maif-progress" id="maifProgress"></div>
+        </div>
+        <div class="info-panel">
+          <div class="info-panel-inner">
+            <div class="info-panel-bar"></div>
+            <div class="info-panel-left">
+              <div class="info-panel-tag">Magazines BtoB / BtoC</div>
+              <div class="info-panel-client">MAIF</div>
+              <div class="info-panel-sub">La revue des managers</div>
+            </div>
+            <div class="info-panel-sep"></div>
+            <div class="info-panel-desc"><strong>Mensuel</strong> · 12 pages</div>
           </div>
         </div>
-        <div class="carousel-slide">
-          <img src="LVMH_EnAparte.png" alt="LVMH — En Apartés" loading="eager">
-          <div class="slide-label">
-			  <span class="slide-client">LVMH — En Apartés
-			  <p>bi annuel - 48 pages
-		      <p>2 langues : FR et GB
-			  <p>dos carré cousu</p>
-		    </p>
+      </div>
+
+      <!-- SLIDE 1 : LVMH -->
+      <div class="carousel-slide" style="min-width:100%;">
+        <div class="lvmh-carousel" id="lvmhCarousel">
+          <div class="lvmh-track" id="lvmhTrack">
+            <div class="lvmh-item active">
+              <img src="LVMH_EnAparte.png" alt="LVMH — En apartés">
+              <span class="lvmh-format-badge">Trimestriel · 48 pages · FR / GB</span>
+            </div>
+          </div>
+          <div class="lvmh-progress" id="lvmhProgress"></div>
+        </div>
+        <div class="info-panel">
+          <div class="info-panel-inner">
+            <div class="info-panel-bar"></div>
+            <div class="info-panel-left">
+              <div class="info-panel-tag">Magazines BtoB / BtoC</div>
+              <div class="info-panel-client">LVMH</div>
+              <div class="info-panel-sub">En apartés</div>
+            </div>
+            <div class="info-panel-sep"></div>
+            <div class="info-panel-desc"><strong>Trimestriel</strong> · 48 pages · 2 langues FR et GB</div>
           </div>
         </div>
-        <div class="carousel-slide">
-          <img src="Renault_Trucks.png" alt="Renault Trucks — Optimum Magazine" loading="eager">
-          <div class="slide-label">
-			  <span class="slide-client">Renault Trucks — Optimum Magazine
-			  <p>Trimestriel - 32 pages
+      </div>
+
+      <!-- SLIDE 2 : RENAULT TRUCKS -->
+<div class="carousel-slide" style="min-width:100%;">
+  <div class="maif-carousel">
+    <div class="maif-track">
+      <div class="maif-item active">
+        <img src="Renault_Trucks.png" alt="Renault Trucks — Optimum Magazine">
+      </div>
+    </div>
+  </div>
+  <div class="info-panel">
+    <div class="info-panel-inner">
+      <div class="info-panel-bar"></div>
+      <div class="info-panel-left">
+        <div class="info-panel-tag">Magazines BtoB / BtoC</div>
+        <div class="info-panel-client">Renault Trucks</div>
+        <div class="info-panel-sub">Optimum Magazine</div>
+      </div>
+      <div class="info-panel-sep"></div>
+      <div class="info-panel-desc"><p>Trimestriel - 32 pages
 		    <p>8 langues
 			  <p>dos carré collé
-			  </p>
-          </div>
-        </div>
-        <div class="carousel-slide">
-          <img src="Leclerc_Voyages.png" alt="Leclerc Voyages — Brochure Collection" loading="lazy">
-          <div class="slide-label">
-            <span class="slide-client">Leclerc Voyages — Brochure Collection
-			  <p>Brochure bi-annuelle
+			  </p></div>
+    </div>
+  </div>
+</div>
+
+      <!-- SLIDE 3 : LECLERC VOYAGES -->
+<div class="carousel-slide" style="min-width:100%;">
+  <div class="maif-carousel">
+    <div class="maif-track">
+      <div class="maif-item active">
+        <img src="Leclerc_Voyages.png" alt="Leclerc Voyages — Brochure Collection">
+      </div>
+    </div>
+  </div>
+  <div class="info-panel">
+    <div class="info-panel-inner">
+      <div class="info-panel-bar"></div>
+      <div class="info-panel-left">
+        <div class="info-panel-tag">Magazines BtoB / BtoC</div>
+        <div class="info-panel-client">Leclerc Voyages</div>
+        <div class="info-panel-sub">Brochure Collection</div>
+      </div>
+      <div class="info-panel-sep"></div>
+      <div class="info-panel-desc"><p>Brochure bi-annuelle
 		    <p>208 pages
 			  <p>Dos carré collé
 			  <p>Réalisée sur plateforme collaborative
 			  <p>Mise en page automatique
-			  <p>Workflow mis à jour en temps réel
-    </p>
-			  </span>
-          </div>
-        </div>
+			  <p>Workflow mis à jour en temps réel</div>
     </div>
-    <button class="carousel-btn prev" onclick="carouselMove_magazine(-1)">&#8592;</button>
-    <button class="carousel-btn next" onclick="carouselMove_magazine(1)">&#8594;</button>
   </div>
-  <div class="carousel-dots" id="dots_magazine">
-      <button class="dot active" onclick="goToSlide_magazine(0)"></button>
-      <button class="dot" onclick="goToSlide_magazine(1)"></button>
-      <button class="dot" onclick="goToSlide_magazine(2)"></button>
-      <button class="dot" onclick="goToSlide_magazine(3)"></button>
+</div>
+
+    </div><!-- fin magazineTrack -->
+
+  <!-- Flèches navigation -->
+  <div style="position:absolute; top:39%; left:0; right:0; display:flex; justify-content:space-between; padding:0 16px; transform:translateY(-50%); pointer-events:none; z-index:5;">
+    <button onclick="goToSlide_magazine(currentMag - 1)" style="pointer-events:all; width:34px; height:34px; background:rgba(8,8,13,0.6); border:1px solid rgba(139,124,248,0.25); color:#F0EEE8; font-size:0.85rem; cursor:pointer; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px);">&#8592;</button>
+    <button onclick="goToSlide_magazine(currentMag + 1)" style="pointer-events:all; width:34px; height:34px; background:rgba(8,8,13,0.6); border:1px solid rgba(139,124,248,0.25); color:#F0EEE8; font-size:0.85rem; cursor:pointer; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px);">&#8594;</button>
   </div>
+
+  </div><!-- fin magazineCarousel -->
+
   <script>
-  (function(){
-    var cur=0, tot=4;
-    var track=document.getElementById('track_magazine');
-    var dots=document.querySelectorAll('#dots_magazine .dot');
-    var tabs=document.querySelectorAll('#clientTabs_magazine .client-tab');
-    var slides=document.querySelectorAll('#carousel_magazine .carousel-slide');
-    function upd(){
-      track.style.transform='translateX(-'+(cur*100)+'%)';
-      slides.forEach(function(s,i){s.classList.toggle('active',i===cur);});
-      dots.forEach(function(d,i){d.classList.toggle('active',i===cur);});
-      tabs.forEach(function(t,i){t.classList.toggle('active',i===cur);});
-    }
-    window.carouselMove_magazine=function(dir){cur=(cur+dir+tot)%tot;upd();};
-    window.goToSlide_magazine=function(idx){cur=idx;upd();};
-    document.addEventListener('keydown',function(e){
-      var tab=document.getElementById('tab-magazine');
-      if(!tab||!tab.classList.contains('active'))return;
-      if(e.key==='ArrowLeft')carouselMove_magazine(-1);
-      if(e.key==='ArrowRight')carouselMove_magazine(1);
+(function() {
+  window.currentMag = 0;          /* ← window. pour la rendre globale */
+  var totalMag = 4;
+  var track = document.getElementById('magazineTrack');
+  var tabs = document.querySelectorAll('#clientTabs_magazine .client-tab');
+
+  window.goToSlide_magazine = function(idx) {
+    window.currentMag = (idx + totalMag) % totalMag;
+    track.style.transform = 'translateX(-' + (window.currentMag * 100) + '%)';
+    tabs.forEach(function(t, i) {
+      t.classList.toggle('active', i === window.currentMag);
     });
-    var startX=0,wrap=document.getElementById('carousel_magazine');
-    wrap.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;},{passive:true});
-    wrap.addEventListener('touchend',function(e){
-      var diff=startX-e.changedTouches[0].clientX;
-      if(Math.abs(diff)>50)carouselMove_magazine(diff>0?1:-1);
-    });
-  })();
-  </script>
+  };
 
+  goToSlide_magazine(0);
+})();
+</script>
 
-  </div>
+</div><!-- fin tab-magazine -->
 
-  <!-- TAB: PHARMA -->
-  <div class="tab-content" id="tab-pharma">
+ <!-- TAB: PHARMA -->
+<div class="tab-content" id="tab-pharma">
 
   <div class="client-tabs" id="clientTabs_pharma">
-      <button class="client-tab active" onclick="goToSlide_pharma(0)">Doliprane — Remis Médecin · Sanofi</button>
-      <button class="client-tab" onclick="goToSlide_pharma(1)">Rybrevant — Fiche Posologique · J&amp;J</button>
-      <button class="client-tab" onclick="goToSlide_pharma(2)">Dupixent — Mécanisme d'action · Sanofi</button>
-      <button class="client-tab" onclick="goToSlide_pharma(3)">Sanofi BPCO · Rybrevant Guide Pratique</button>
-      <button class="client-tab" onclick="goToSlide_pharma(4)">Novartis Cosentyx — Stand Parapluie 2960×2280mm</button>
-      <button class="client-tab" onclick="goToSlide_pharma(5)">Johnson &amp; Johnson — Roll-up Kakémonos 800×2000mm</button>
+    <button class="client-tab active" onclick="goToSlide_pharma(0)">Doliprane — Remis Médecin · Sanofi</button>
+    <button class="client-tab" onclick="goToSlide_pharma(1)">Rybrevant — Fiche Posologique</button>
+    <button class="client-tab" onclick="goToSlide_pharma(2)">Lilly - EADV Jardiance</button>
+    <button class="client-tab" onclick="goToSlide_pharma(3)">Sanofi BPCO — Rybrevant Guide Pratique</button>
+    <button class="client-tab" onclick="goToSlide_pharma(4)">Novartis Cosentyx — Stand Parapluie</button>
+    <button class="client-tab" onclick="goToSlide_pharma(5)">Johnson &amp; Johnson — Roll-up Kakémonos</button>
   </div>
+
   <div class="carousel-wrap" id="carousel_pharma">
     <div class="carousel-track" id="track_pharma">
-        <div class="carousel-slide active">
-          <img src="Doliprane.png"
-			   alt="Doliprane — Remis Médecin · Sanofi" loading="eager">
-          <div class="slide-label">
-            <span class="slide-client">Doliprane — Remis Médecin · Sanofi</span>
+
+      <div class="carousel-slide active">
+        <img src="Doliprane.png" alt="Doliprane — Remis Médecin · Sanofi" loading="eager">
+        <div class="info-panel">
+          <div class="info-panel-inner">
+            <div class="info-panel-bar"></div>
+            <div class="info-panel-left">
+              <div class="info-panel-tag">Édition Pharmaceutique</div>
+              <div class="info-panel-client">Sanofi - Doliprane</div>
+              <div class="info-panel-sub">Remis Médecin</div>
+            </div>
+            <div class="info-panel-sep"></div>
+            <div class="info-panel-desc">40 pages · dos carré collé · 4 onglets latéraux</div>
           </div>
         </div>
-        <div class="carousel-slide">
-          <img src="Rybrevant.png" 
-			   alt="Rybrevant — Fiche Posologique · J&amp;J" loading="lazy">
-          <div class="slide-label">
-            <span class="slide-client">Rybrevant — Fiche Posologique · J&amp;J</span>
+      </div>
+
+      <div class="carousel-slide">
+        <img src="Rybrevant.png" alt="Rybrevant — Fiche Posologique · J&amp;J" loading="lazy">
+        <div class="info-panel">
+          <div class="info-panel-inner">
+            <div class="info-panel-bar"></div>
+            <div class="info-panel-left">
+              <div class="info-panel-tag">Édition Pharmaceutique</div>
+              <div class="info-panel-client">Johnson &amp; Johnson - Rybrevant</div>
+              <div class="info-panel-sub">Fiche Posologique</div>
+            </div>
+            <div class="info-panel-sep"></div>
+            <div class="info-panel-desc">54 pages · <strong>Reliure Wir'O</strong> · 8 onglets en pied</div>
           </div>
         </div>
-        <div class="carousel-slide">
-          <img src="dupixent.png" 
-			   alt="Dupixent — Mécanisme d'action · Sanofi" loading="lazy">
-          <div class="slide-label">
-            <span class="slide-client">Dupixent — Mécanisme d'action · Sanofi</span>
-            <span class="slide-counter">03 / 06</span>
+      </div>
+
+      <div class="carousel-slide">
+        <img src="Lilly_Jardiance_EADV.png" alt="Dupixent — Mécanisme d'action · Sanofi" loading="lazy">
+        <div class="info-panel">
+          <div class="info-panel-inner">
+            <div class="info-panel-bar"></div>
+            <div class="info-panel-left">
+              <div class="info-panel-tag">Édition Pharmaceutique</div>
+              <div class="info-panel-client">Lilly - Jardiance</div>
+              <div class="info-panel-sub">EADV</div>
+            </div>
+            <div class="info-panel-sep"></div>
+            <div class="info-panel-desc"><li>Aide à la vente digital pour visiteurs médicaux sous forme d'application lisible sur tablette</li> 
+			<li>Réalisation sous Indesign, puis passage sur plateforme Viva pour développement</li> 
+			<li>159 pages</li>
+			  </div>
           </div>
         </div>
-        <div class="carousel-slide">
-          <img src="Sanofi_BPCO.png" 
-			   alt="Sanofi BPCO · Rybrevant Guide Pratique" loading="lazy">
-          <div class="slide-label">
-            <span class="slide-client">Sanofi BPCO</span>
+      </div>
+
+      <div class="carousel-slide">
+        <img src="Sanofi_BPCO.png" alt="Sanofi BPCO · Rybrevant Guide Pratique" loading="lazy">
+        <div class="info-panel">
+          <div class="info-panel-inner">
+            <div class="info-panel-bar"></div>
+            <div class="info-panel-left">
+              <div class="info-panel-tag">Édition Pharmaceutique</div>
+              <div class="info-panel-client">Sanofi - BPCO</div>
+              <div class="info-panel-sub">Brochure patient</div>
+            </div>
+            <div class="info-panel-sep"></div>
+            <div class="info-panel-desc">20 pages · <strong>ouverture à l'allemande</strong> · 4 onglets en pied</div>
           </div>
         </div>
-        <div class="carousel-slide">
-          <img src="NOVA_2407204_Stand_parapluie_2960x2280mm_AuQuart.png" 
-			   alt="Novartis Cosentyx — Stand Parapluie 2960×2280mm" loading="lazy">
-          <div class="slide-label">
-            <span class="slide-client">Novartis Cosentyx — Stand Parapluie 2960×2280mm</span>
+      </div>
+
+      <div class="carousel-slide">
+        <img src="NOVA_2407204_Stand_parapluie_2960x2280mm_AuQuart.png" alt="Novartis Cosentyx — Stand Parapluie" loading="lazy">
+        <div class="info-panel">
+          <div class="info-panel-inner">
+            <div class="info-panel-bar"></div>
+            <div class="info-panel-left">
+              <div class="info-panel-tag">Édition Pharmaceutique · PLV</div>
+              <div class="info-panel-client">Novartis - Cosentyx</div>
+              <div class="info-panel-sub">Stand Parapluie</div>
+            </div>
+            <div class="info-panel-sep"></div>
+            <div class="info-panel-desc"><strong>Format</strong> · 2960 × 2280 mm</div>
           </div>
         </div>
-        <div class="carousel-slide">
-          <img src="Kakemonos_Rollup.png" 
-			   alt="Johnson &amp; Johnson — Roll-up Kakémonos 800×2000mm" loading="lazy">
-          <div class="slide-label">
-            <span class="slide-client">Johnson &amp; Johnson — Roll-up Kakémonos 800×2000mm</span>
-            <span class="slide-counter">06 / 06</span>
+      </div>
+
+      <div class="carousel-slide">
+        <img src="Kakemonos_Rollup.png" alt="Johnson &amp; Johnson — Roll-up Kakémonos" loading="lazy">
+        <div class="info-panel">
+          <div class="info-panel-inner">
+            <div class="info-panel-bar"></div>
+            <div class="info-panel-left">
+              <div class="info-panel-tag">Édition Pharmaceutique · PLV</div>
+              <div class="info-panel-client">Johnson &amp; Johnson</div>
+              <div class="info-panel-sub">Roll-up Kakémonos</div>
+            </div>
+            <div class="info-panel-sep"></div>
+            <div class="info-panel-desc"><strong>Format</strong> · 800 × 2000 mm</div>
           </div>
         </div>
-    </div>
+      </div>
+
+    </div><!-- fin track_pharma -->
+	  
     <button class="carousel-btn prev" onclick="carouselMove_pharma(-1)">&#8592;</button>
     <button class="carousel-btn next" onclick="carouselMove_pharma(1)">&#8594;</button>
   </div>
+
   <div class="carousel-dots" id="dots_pharma">
-      <button class="dot active" onclick="goToSlide_pharma(0)"></button>
-      <button class="dot" onclick="goToSlide_pharma(1)"></button>
-      <button class="dot" onclick="goToSlide_pharma(2)"></button>
-      <button class="dot" onclick="goToSlide_pharma(3)"></button>
-      <button class="dot" onclick="goToSlide_pharma(4)"></button>
-      <button class="dot" onclick="goToSlide_pharma(5)"></button>
+    <button class="dot active" onclick="goToSlide_pharma(0)"></button>
+    <button class="dot" onclick="goToSlide_pharma(1)"></button>
+    <button class="dot" onclick="goToSlide_pharma(2)"></button>
+    <button class="dot" onclick="goToSlide_pharma(3)"></button>
+    <button class="dot" onclick="goToSlide_pharma(4)"></button>
+    <button class="dot" onclick="goToSlide_pharma(5)"></button>
   </div>
+
   <script>
   (function(){
     var cur=0, tot=6;
@@ -2653,7 +2765,7 @@
       if(e.key==='ArrowLeft')carouselMove_pharma(-1);
       if(e.key==='ArrowRight')carouselMove_pharma(1);
     });
-    var startX=0,wrap=document.getElementById('carousel_pharma');
+    var startX=0, wrap=document.getElementById('carousel_pharma');
     wrap.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;},{passive:true});
     wrap.addEventListener('touchend',function(e){
       var diff=startX-e.changedTouches[0].clientX;
@@ -2662,58 +2774,97 @@
   })();
   </script>
 
-  </div>
+</div>
 
   <!-- TAB: RAPPORTS -->
-  <div class="tab-content" id="tab-rapports">
+<div class="tab-content" id="tab-rapports">
 
   <div class="client-tabs" id="clientTabs_rapports">
-      <button class="client-tab active" onclick="goToSlide_rapports(0)">LVMH — Rapport Annuel 2019 · 152 pages</button>
-      <button class="client-tab" onclick="goToSlide_rapports(1)">Groupe Renault — Rapport Annuel 2019 · 80 pages</button>
-      <button class="client-tab" onclick="goToSlide_rapports(2)">Dassault Systèmes — Rapport Annuel 2021 · 54 pages</button>
-      <button class="client-tab" onclick="goToSlide_rapports(3)">Vivendi — Rapport Annuel 2020 · 404 pages</button>
+    <button class="client-tab active" onclick="goToSlide_rapports(0)">LVMH</button>
+    <button class="client-tab" onclick="goToSlide_rapports(1)">Groupe Renault</button>
+    <button class="client-tab" onclick="goToSlide_rapports(2)">Dassault Systèmes</button>
+    <button class="client-tab" onclick="goToSlide_rapports(3)">Vivendi</button>
   </div>
+
   <div class="carousel-wrap" id="carousel_rapports">
     <div class="carousel-track" id="track_rapports">
-        <div class="carousel-slide active">
-          <img src="RA_LVMH.png" 
-			   alt="LVMH — Rapport Annuel 2019 · 152 pages" loading="eager">
-          <div class="slide-label">
-            <span class="slide-client">LVMH — Rapport Annuel 2019 · 152 pages</span>
-            <span class="slide-counter">01 / 04</span>
+
+      <div class="carousel-slide active">
+        <img src="RA_LVMH.png" alt="LVMH — Rapport Annuel 2019 · 152 pages" loading="eager">
+        <div class="info-panel">
+          <div class="info-panel-inner">
+            <div class="info-panel-bar"></div>
+            <div class="info-panel-left">
+              <div class="info-panel-tag">Rapport Annuel</div>
+              <div class="info-panel-client">LVMH</div>
+              <div class="info-panel-sub">Rapport Annuel 2019</div>
+            </div>
+            <div class="info-panel-sep"></div>
+            <div class="info-panel-desc"><strong>152 pages</strong></div>
           </div>
         </div>
-        <div class="carousel-slide">
-          <img src="RA_Renault.png" alt="Groupe Renault — Rapport Annuel 2019 · 80 pages" loading="lazy">
-          <div class="slide-label">
-            <span class="slide-client">Groupe Renault — Rapport Annuel 2019 · 80 pages</span>
-            <span class="slide-counter">02 / 04</span>
+      </div>
+
+      <div class="carousel-slide">
+        <img src="RA_Renault.png" alt="Groupe Renault — Rapport Annuel 2019 · 80 pages" loading="lazy">
+        <div class="info-panel">
+          <div class="info-panel-inner">
+            <div class="info-panel-bar"></div>
+            <div class="info-panel-left">
+              <div class="info-panel-tag">Rapport Annuel</div>
+              <div class="info-panel-client">Groupe Renault</div>
+              <div class="info-panel-sub">Rapport Annuel 2019</div>
+            </div>
+            <div class="info-panel-sep"></div>
+            <div class="info-panel-desc"><strong>80 pages</strong></div>
           </div>
         </div>
-        <div class="carousel-slide">
-          <img src="RA_Dassault.png" alt="Dassault Systèmes — Rapport Annuel 2021 · 54 pages" loading="lazy">
-          <div class="slide-label">
-            <span class="slide-client">Dassault Systèmes — Rapport Annuel 2021 · 54 pages</span>
-            <span class="slide-counter">03 / 04</span>
+      </div>
+
+      <div class="carousel-slide">
+        <img src="RA_Dassault.png" alt="Dassault Systèmes — Rapport Annuel 2021 · 54 pages" loading="lazy">
+        <div class="info-panel">
+          <div class="info-panel-inner">
+            <div class="info-panel-bar"></div>
+            <div class="info-panel-left">
+              <div class="info-panel-tag">Rapport Annuel</div>
+              <div class="info-panel-client">Dassault Systèmes</div>
+              <div class="info-panel-sub">Rapport Annuel 2021</div>
+            </div>
+            <div class="info-panel-sep"></div>
+            <div class="info-panel-desc"><strong>54 pages</strong></div>
           </div>
         </div>
-        <div class="carousel-slide">
-          <img src="RA_Vivendi.png" alt="Vivendi — Rapport Annuel 2020 · 404 pages" loading="lazy">
-          <div class="slide-label">
-            <span class="slide-client">Vivendi — Rapport Annuel 2020 · 404 pages</span>
-            <span class="slide-counter">04 / 04</span>
+      </div>
+
+      <div class="carousel-slide">
+        <img src="RA_Vivendi.png" alt="Vivendi — Rapport Annuel 2020 · 404 pages" loading="lazy">
+        <div class="info-panel">
+          <div class="info-panel-inner">
+            <div class="info-panel-bar"></div>
+            <div class="info-panel-left">
+              <div class="info-panel-tag">Rapport Annuel</div>
+              <div class="info-panel-client">Vivendi</div>
+              <div class="info-panel-sub">Rapport Annuel 2020</div>
+            </div>
+            <div class="info-panel-sep"></div>
+            <div class="info-panel-desc"><strong>404 pages</strong></div>
           </div>
         </div>
-    </div>
+      </div>
+
+    </div><!-- fin track_rapports -->
     <button class="carousel-btn prev" onclick="carouselMove_rapports(-1)">&#8592;</button>
     <button class="carousel-btn next" onclick="carouselMove_rapports(1)">&#8594;</button>
   </div>
+
   <div class="carousel-dots" id="dots_rapports">
-      <button class="dot active" onclick="goToSlide_rapports(0)"></button>
-      <button class="dot" onclick="goToSlide_rapports(1)"></button>
-      <button class="dot" onclick="goToSlide_rapports(2)"></button>
-      <button class="dot" onclick="goToSlide_rapports(3)"></button>
+    <button class="dot active" onclick="goToSlide_rapports(0)"></button>
+    <button class="dot" onclick="goToSlide_rapports(1)"></button>
+    <button class="dot" onclick="goToSlide_rapports(2)"></button>
+    <button class="dot" onclick="goToSlide_rapports(3)"></button>
   </div>
+
   <script>
   (function(){
     var cur=0, tot=4;
@@ -2735,7 +2886,7 @@
       if(e.key==='ArrowLeft')carouselMove_rapports(-1);
       if(e.key==='ArrowRight')carouselMove_rapports(1);
     });
-    var startX=0,wrap=document.getElementById('carousel_rapports');
+    var startX=0, wrap=document.getElementById('carousel_rapports');
     wrap.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;},{passive:true});
     wrap.addEventListener('touchend',function(e){
       var diff=startX-e.changedTouches[0].clientX;
@@ -2744,7 +2895,7 @@
   })();
   </script>
 
-  </div>
+</div>
 
 <!-- CLIENTS -->
 <section id="clients">
@@ -2864,10 +3015,31 @@ window.addEventListener('load', () => {
 
 // Tabs
 function showTab(tabId) {
-  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-  document.getElementById('tab-' + tabId).classList.add('active');
-  event.target.classList.add('active');
+  // cache tous les onglets
+  document.querySelectorAll('.tab-content').forEach(el => {
+    el.classList.remove('active');
+    el.style.display = 'none';
+  });
+
+  // retire active des boutons
+  document.querySelectorAll('.tab-btn').forEach(el => {
+    el.classList.remove('active');
+  });
+
+  // affiche l’onglet sélectionné
+  const selectedTab = document.getElementById('tab-' + tabId);
+
+  if (selectedTab) {
+    selectedTab.style.display = 'block';
+    selectedTab.classList.add('active');
+  }
+
+  // active le bon bouton
+  const activeBtn = document.querySelector(`[onclick="showTab('${tabId}')"]`);
+
+  if (activeBtn) {
+    activeBtn.classList.add('active');
+  }
 }
 
 // Reveal on scroll
