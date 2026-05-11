@@ -772,7 +772,27 @@
     .projects-grid.trio { grid-template-columns: 1fr; }
     .feature-card { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 12px; text-align: center; }
+  
+	  /* Timeline mobile */
+  .timeline-item {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 8px 0;
+    padding: 28px 0;
   }
+  .timeline-dates {
+    font-size: 0.82rem;
+    color: var(--accent);
+    padding-top: 0;
+  }
+  .timeline-dot {
+    display: none;
+  }
+  .timeline-content {
+    padding-left: 12px;
+    border-left: 2px solid var(--border);
+  }
+}
 </style>
 </head>
 <body>
