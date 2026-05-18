@@ -1191,13 +1191,14 @@
 
     <!-- Client tab nav -->
     <div class="client-tabs" id="clientTabs">
-      <button class="client-tab active" onclick="goToSlide(0)">Canal+</button>
-      <button class="client-tab" onclick="goToSlide(1)">Lacoste</button>
-      <button class="client-tab" onclick="goToSlide(2)">Alpine</button>
-      <button class="client-tab" onclick="goToSlide(3)">Héléna Rubinstein</button>
-      <button class="client-tab" onclick="goToSlide(4)">LVMH — JO 2024</button>
+      <button class="client-tab active" onclick="goToSlide(0)">Alpine</button>
+      <button class="client-tab" onclick="goToSlide(1)">Héléna Rubinstein</button>
+      <button class="client-tab" onclick="goToSlide(2)">LVMH — JO 2024</button>
+	  <button class="client-tab" onclick="goToSlide(3)">Canal+</button>
+      <button class="client-tab" onclick="goToSlide(4)">Lacoste</button>
       <button class="client-tab" onclick="goToSlide(5)">La Poste</button>
-      <button class="client-tab" onclick="goToSlide(6)">Crédit Mutuel</button>
+      <button class="client-tab" onclick="goToSlide(6)">KFC</button>
+	  
     </div>
 
     <!-- Carousel -->
@@ -1205,364 +1206,9 @@
 
       <div class="carousel-track" id="carouselTrack">
 
-        <!-- Slide 1: Canal+ Validé — mini carousel 3 formats -->
-<div class="carousel-slide active">
-  <style>
-  .canp-carousel {
-    position: relative;
-    width: 100%;
-    height: 78vh;
-    overflow: hidden;
-    background: #0a0a0f;
-  }
-  .canp-track {
-    display: flex;
-    height: 100%;
-    transition: transform 0.7s cubic-bezier(0.77,0,0.175,1);
-  }
-  .canp-item {
-    min-width: 100%;
-    height: 100%;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .canp-item img {
-    width: 100%;
-    height: 78vh;
-    object-fit: contain;
-    object-position: center;
-    display: block;
-    transition: transform 0.8s ease;
-  }
-  .canp-item.active img { transform: scale(1.015); }
-  .canp-format-badge {
-    position: absolute;
-    top: 18px;
-    right: 18px;
-    background: rgba(139,124,248,0.88);
-    color: #fff;
-    font-family: 'Syne', sans-serif;
-    font-size: 0.62rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 5px 13px;
-    backdrop-filter: blur(6px);
-    border: 1px solid rgba(255,255,255,0.15);
-  }
-  .canp-progress {
-    position: absolute;
-    bottom: 0; left: 0;
-    height: 2px;
-    background: #8B7CF8;
-    width: 0%;
-    transition: width 3.5s linear;
-  }
-  .canp-dots {
-    position: absolute;
-    bottom: 52px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-    z-index: 5;
-  }
-  .canp-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.25);
-    transition: all 0.25s;
-    cursor: pointer;
-  }
-  .canp-dot.active {
-    background: #8B7CF8;
-    width: 20px;
-    border-radius: 3px;
-  }
-  .canp-nav {
-    position: absolute;
-    top: 50%; left: 0; right: 0;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 16px;
-    transform: translateY(-50%);
-    pointer-events: none;
-    z-index: 5;
-  }
-  .canp-nav-btn {
-    pointer-events: all;
-    width: 34px; height: 34px;
-    background: rgba(8,8,13,0.6);
-    border: 1px solid rgba(139,124,248,0.25);
-    color: #F0EEE8;
-    font-size: 0.85rem;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s;
-    backdrop-filter: blur(4px);
-  }
-  .canp-nav-btn:hover { background: #8B7CF8; color: #08080d; border-color: #8B7CF8; }
-  </style>
 
-  <div class="canp-carousel" id="canpCarousel">
-    <div class="canp-track" id="canpTrack">
-      <div class="canp-item active">
-        <img src="CANP_2509053_SAISON_3_VALIDE_4x3_Aff.png" alt="Canal+ — Validé S3 · 4×3" loading="eager">
-        <span class="canp-format-badge">4 × 3 m</span>
-      </div>
-      <div class="canp-item">
-        <img src="CANP_2509053_SAISON_3_VALIDE_60x80_Aff.png" alt="Canal+ — Validé S3 · 60×80" loading="lazy">
-        <span class="canp-format-badge">60 × 80 cm</span>
-      </div>
-      <div class="canp-item">
-        <img src="CANP_2509053_SAISON_3_VALIDE_145x216_Aff.png" alt="Canal+ — Validé S3 · 145×216" loading="lazy">
-        <span class="canp-format-badge">145 × 216 cm</span>
-      </div>
-    </div>
-    <div class="canp-nav">
-      <button class="canp-nav-btn" id="canpPrev">&#8592;</button>
-      <button class="canp-nav-btn" id="canpNext">&#8594;</button>
-    </div>
-    <div class="canp-dots" id="canpDots">
-      <span class="canp-dot active"></span>
-      <span class="canp-dot"></span>
-      <span class="canp-dot"></span>
-    </div>
-    <div class="canp-progress" id="canpProgress"></div>
-  </div>
 
-	<div class="info-panel" id="infoPanel_display">
-      <div class="info-panel-inner">
-        <div class="info-panel-bar"></div>
-        <div class="info-panel-left">
-          <div class="info-panel-tag">Display · Affichage · PLV</div>
-          <div class="info-panel-client" id="infoClient_display">Canal+</div>
-          <div class="info-panel-sub" id="infoSub_display">Validé Saison 3</div>
-        </div>
-        <div class="info-panel-sep"></div>
-        <div class="info-panel-desc" id="infoDesc_display">Déclinaisons multi-formats <strong>affichage - plan presse national</strong> <span class="bullet"></span></div>
-      </div>
-    </div>
-	
-   <script>
-  (function() {
-    var ci = 0;
-    var total = 3;
-    var track = document.getElementById('canpTrack');
-    var dots = document.querySelectorAll('#canpDots .canp-dot');
-    var items = document.querySelectorAll('#canpCarousel .canp-item');
-    var progress = document.getElementById('canpProgress');
-    var timer;
-
-    function canpUpdate(idx) {
-      ci = (idx + total) % total;
-      track.style.transform = 'translateX(-' + (ci * 100) + '%)';
-      dots.forEach(function(d, i) { d.classList.toggle('active', i === ci); });
-      items.forEach(function(it, i) { it.classList.toggle('active', i === ci); });
-      progress.style.transition = 'none';
-      progress.style.width = '0%';
-      setTimeout(function() {
-        progress.style.transition = 'width 3.5s linear';
-        progress.style.width = '100%';
-      }, 30);
-    }
-
-    function startAuto() {
-      clearInterval(timer);
-      timer = setInterval(function() { canpUpdate(ci + 1); }, 3500);
-    }
-
-    document.getElementById('canpNext').addEventListener('click', function() { canpUpdate(ci + 1); startAuto(); });
-    document.getElementById('canpPrev').addEventListener('click', function() { canpUpdate(ci - 1); startAuto(); });
-    dots.forEach(function(d, i) {
-      d.addEventListener('click', function() { canpUpdate(i); startAuto(); });
-    });
-
-    canpUpdate(0);
-    startAuto();
-  })();
-  </script>
-</div>
-
-        <!-- Slide 2: Lacoste — mini carousel 2 visuels -->
-<div class="carousel-slide">
-  <style>
-  .laco-carousel {
-    position: relative;
-    width: 100%;
-    height: 78vh;
-    overflow: hidden;
-    background: #0a0a0f;
-  }
-  .laco-track {
-    display: flex;
-    height: 100%;
-    transition: transform 0.7s cubic-bezier(0.77,0,0.175,1);
-  }
-  .laco-item {
-    min-width: 100%;
-    height: 100%;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .laco-item img {
-    width: 100%;
-    height: 78vh;
-    object-fit: contain;
-    object-position: center;
-    display: block;
-    transition: transform 0.8s ease;
-  }
-  .laco-item.active img { transform: scale(1.015); }
-  .laco-format-badge {
-    position: absolute;
-    top: 18px;
-    right: 18px;
-    background: rgba(139,124,248,0.88);
-    color: #fff;
-    font-family: 'Syne', sans-serif;
-    font-size: 0.62rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 5px 13px;
-    backdrop-filter: blur(6px);
-    border: 1px solid rgba(255,255,255,0.15);
-  }
-  .laco-progress {
-    position: absolute;
-    bottom: 0; left: 0;
-    height: 2px;
-    background: #8B7CF8;
-    width: 0%;
-    transition: width 3.5s linear;
-  }
-  .laco-dots {
-    position: absolute;
-    bottom: 52px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-    z-index: 5;
-  }
-  .laco-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.25);
-    transition: all 0.25s;
-    cursor: pointer;
-  }
-  .laco-dot.active {
-    background: #8B7CF8;
-    width: 20px;
-    border-radius: 3px;
-  }
-  .laco-nav {
-    position: absolute;
-    top: 50%; left: 0; right: 0;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 16px;
-    transform: translateY(-50%);
-    pointer-events: none;
-    z-index: 5;
-  }
-  .laco-nav-btn {
-    pointer-events: all;
-    width: 34px; height: 34px;
-    background: rgba(8,8,13,0.6);
-    border: 1px solid rgba(139,124,248,0.25);
-    color: #F0EEE8;
-    font-size: 0.85rem;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s;
-    backdrop-filter: blur(4px);
-  }
-  .laco-nav-btn:hover { background: #8B7CF8; color: #08080d; border-color: #8B7CF8; }
-  </style>
-
-  <div class="laco-carousel" id="lacoCarousel">
-    <div class="laco-track" id="lacoTrack">
-      <div class="laco-item active">
-        <img src="LACO_2505135_PierreNiney_210x280_RevueDuClubLAGARDERE_ParisRACING.png" alt="Campagne presse et affichage Pierre Niney" loading="lazy">
-        <span class="laco-format-badge">Campagne presse et affichage Pierre Niney</span>
-      </div>
-      <div class="laco-item">
-        <img src="LACO_2507067_C_Boutier_225x302_Journal_Du_Golf.png" alt="Campagne presse Céline Boutier" loading="lazy">
-        <span class="laco-format-badge">Campagne presse Céline Boutier</span>
-      </div>
-    </div>
-    <div class="laco-nav">
-      <button class="laco-nav-btn" id="lacoPrev">&#8592;</button>
-      <button class="laco-nav-btn" id="lacoNext">&#8594;</button>
-    </div>
-    <div class="laco-dots" id="lacoDots">
-      <span class="laco-dot active"></span>
-      <span class="laco-dot"></span>
-    </div>
-    <div class="laco-progress" id="lacoProgress"></div>
-  </div>
-
-	<div class="info-panel" id="infoPanel_display">
-      <div class="info-panel-inner">
-        <div class="info-panel-bar"></div>
-        <div class="info-panel-left">
-          <div class="info-panel-tag">Display · Affichage · PLV</div>
-          <div class="info-panel-client" id="infoClient_display">Lacoste</div>
-          <div class="info-panel-sub" id="infoSub_display">Campagne Pierre Niney et Céline Boutier</div>
-        </div>
-        <div class="info-panel-sep"></div>
-        <div class="info-panel-desc" id="infoDesc_display">Déclinaisons multi-formats <strong>affichage - plan presse national et international</strong> <span class="bullet"></div>
-      </div>
-    </div>
-	
-    <script>
-  (function() {
-    var ci = 0;
-    var total = 2;
-    var track = document.getElementById('lacoTrack');
-    var dots = document.querySelectorAll('#lacoDots .laco-dot');
-    var items = document.querySelectorAll('#lacoCarousel .laco-item');
-    var progress = document.getElementById('lacoProgress');
-    var timer;
-
-    function lacoUpdate(idx) {
-      ci = (idx + total) % total;
-      track.style.transform = 'translateX(-' + (ci * 100) + '%)';
-      dots.forEach(function(d, i) { d.classList.toggle('active', i === ci); });
-      items.forEach(function(it, i) { it.classList.toggle('active', i === ci); });
-      progress.style.transition = 'none';
-      progress.style.width = '0%';
-      setTimeout(function() {
-        progress.style.transition = 'width 3.5s linear';
-        progress.style.width = '100%';
-      }, 30);
-    }
-
-    function startAuto() {
-      clearInterval(timer);
-      timer = setInterval(function() { lacoUpdate(ci + 1); }, 3500);
-    }
-
-    document.getElementById('lacoNext').addEventListener('click', function() { lacoUpdate(ci + 1); startAuto(); });
-    document.getElementById('lacoPrev').addEventListener('click', function() { lacoUpdate(ci - 1); startAuto(); });
-    dots.forEach(function(d, i) {
-      d.addEventListener('click', function() { lacoUpdate(i); startAuto(); });
-    });
-
-    lacoUpdate(0);
-    startAuto();
-  })();
-  </script>
-</div>
-
-        <!-- Slide 3: Alpine — carousel 2 visuels -->
+        <!-- Slide 1: Alpine — carousel 2 visuels -->
 <div class="carousel-slide">
   <style>
   .alpi-carousel {
@@ -1673,7 +1319,7 @@
   </script>
 </div>
 
-        <!-- Slide 4: Helena Rubinstein — carousel 2 visuels -->
+        <!-- Slide 2: Helena Rubinstein — carousel 2 visuels -->
 <div class="carousel-slide">
   <style>
   .hele-carousel {
@@ -1784,7 +1430,7 @@
   </script>
 </div>
 
-        <!-- Slide 5: LVMH JO Paris 2024 — mini carousel 13 visuels -->
+        <!-- Slide 3: LVMH JO Paris 2024 — mini carousel 13 visuels -->
 <div class="carousel-slide">
   <style>
   .lvmh-carousel {
@@ -2036,6 +1682,363 @@
   })();
   </script>
 </div>
+	
+	        <!-- Slide 4: Canal+ Validé — mini carousel 3 formats -->
+<div class="carousel-slide active">
+  <style>
+  .canp-carousel {
+    position: relative;
+    width: 100%;
+    height: 78vh;
+    overflow: hidden;
+    background: #0a0a0f;
+  }
+  .canp-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.7s cubic-bezier(0.77,0,0.175,1);
+  }
+  .canp-item {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .canp-item img {
+    width: 100%;
+    height: 78vh;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    transition: transform 0.8s ease;
+  }
+  .canp-item.active img { transform: scale(1.015); }
+  .canp-format-badge {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: rgba(139,124,248,0.88);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 5px 13px;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .canp-progress {
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 2px;
+    background: #8B7CF8;
+    width: 0%;
+    transition: width 3.5s linear;
+  }
+  .canp-dots {
+    position: absolute;
+    bottom: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 5;
+  }
+  .canp-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .canp-dot.active {
+    background: #8B7CF8;
+    width: 20px;
+    border-radius: 3px;
+  }
+  .canp-nav {
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 5;
+  }
+  .canp-nav-btn {
+    pointer-events: all;
+    width: 34px; height: 34px;
+    background: rgba(8,8,13,0.6);
+    border: 1px solid rgba(139,124,248,0.25);
+    color: #F0EEE8;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    backdrop-filter: blur(4px);
+  }
+  .canp-nav-btn:hover { background: #8B7CF8; color: #08080d; border-color: #8B7CF8; }
+  </style>
+
+  <div class="canp-carousel" id="canpCarousel">
+    <div class="canp-track" id="canpTrack">
+      <div class="canp-item active">
+        <img src="CANP_2509053_SAISON_3_VALIDE_4x3_Aff.png" alt="Canal+ — Validé S3 · 4×3" loading="eager">
+        <span class="canp-format-badge">4 × 3 m</span>
+      </div>
+      <div class="canp-item">
+        <img src="CANP_2509053_SAISON_3_VALIDE_60x80_Aff.png" alt="Canal+ — Validé S3 · 60×80" loading="lazy">
+        <span class="canp-format-badge">60 × 80 cm</span>
+      </div>
+      <div class="canp-item">
+        <img src="CANP_2509053_SAISON_3_VALIDE_145x216_Aff.png" alt="Canal+ — Validé S3 · 145×216" loading="lazy">
+        <span class="canp-format-badge">145 × 216 cm</span>
+      </div>
+    </div>
+    <div class="canp-nav">
+      <button class="canp-nav-btn" id="canpPrev">&#8592;</button>
+      <button class="canp-nav-btn" id="canpNext">&#8594;</button>
+    </div>
+    <div class="canp-dots" id="canpDots">
+      <span class="canp-dot active"></span>
+      <span class="canp-dot"></span>
+      <span class="canp-dot"></span>
+    </div>
+    <div class="canp-progress" id="canpProgress"></div>
+  </div>
+
+	<div class="info-panel" id="infoPanel_display">
+      <div class="info-panel-inner">
+        <div class="info-panel-bar"></div>
+        <div class="info-panel-left">
+          <div class="info-panel-tag">Display · Affichage · PLV</div>
+          <div class="info-panel-client" id="infoClient_display">Canal+</div>
+          <div class="info-panel-sub" id="infoSub_display">Validé Saison 3</div>
+        </div>
+        <div class="info-panel-sep"></div>
+        <div class="info-panel-desc" id="infoDesc_display">Déclinaisons multi-formats <strong>affichage - plan presse national</strong> <span class="bullet"></span></div>
+      </div>
+    </div>
+	
+   <script>
+  (function() {
+    var ci = 0;
+    var total = 3;
+    var track = document.getElementById('canpTrack');
+    var dots = document.querySelectorAll('#canpDots .canp-dot');
+    var items = document.querySelectorAll('#canpCarousel .canp-item');
+    var progress = document.getElementById('canpProgress');
+    var timer;
+
+    function canpUpdate(idx) {
+      ci = (idx + total) % total;
+      track.style.transform = 'translateX(-' + (ci * 100) + '%)';
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === ci); });
+      items.forEach(function(it, i) { it.classList.toggle('active', i === ci); });
+      progress.style.transition = 'none';
+      progress.style.width = '0%';
+      setTimeout(function() {
+        progress.style.transition = 'width 3.5s linear';
+        progress.style.width = '100%';
+      }, 30);
+    }
+
+    function startAuto() {
+      clearInterval(timer);
+      timer = setInterval(function() { canpUpdate(ci + 1); }, 3500);
+    }
+
+    document.getElementById('canpNext').addEventListener('click', function() { canpUpdate(ci + 1); startAuto(); });
+    document.getElementById('canpPrev').addEventListener('click', function() { canpUpdate(ci - 1); startAuto(); });
+    dots.forEach(function(d, i) {
+      d.addEventListener('click', function() { canpUpdate(i); startAuto(); });
+    });
+
+    canpUpdate(0);
+    startAuto();
+  })();
+  </script>
+</div>
+
+        <!-- Slide 5: Lacoste — mini carousel 2 visuels -->
+<div class="carousel-slide">
+  <style>
+  .laco-carousel {
+    position: relative;
+    width: 100%;
+    height: 78vh;
+    overflow: hidden;
+    background: #0a0a0f;
+  }
+  .laco-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.7s cubic-bezier(0.77,0,0.175,1);
+  }
+  .laco-item {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .laco-item img {
+    width: 100%;
+    height: 78vh;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    transition: transform 0.8s ease;
+  }
+  .laco-item.active img { transform: scale(1.015); }
+  .laco-format-badge {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: rgba(139,124,248,0.88);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 5px 13px;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .laco-progress {
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 2px;
+    background: #8B7CF8;
+    width: 0%;
+    transition: width 3.5s linear;
+  }
+  .laco-dots {
+    position: absolute;
+    bottom: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 5;
+  }
+  .laco-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .laco-dot.active {
+    background: #8B7CF8;
+    width: 20px;
+    border-radius: 3px;
+  }
+  .laco-nav {
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 5;
+  }
+  .laco-nav-btn {
+    pointer-events: all;
+    width: 34px; height: 34px;
+    background: rgba(8,8,13,0.6);
+    border: 1px solid rgba(139,124,248,0.25);
+    color: #F0EEE8;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    backdrop-filter: blur(4px);
+  }
+  .laco-nav-btn:hover { background: #8B7CF8; color: #08080d; border-color: #8B7CF8; }
+  </style>
+
+  <div class="laco-carousel" id="lacoCarousel">
+    <div class="laco-track" id="lacoTrack">
+      <div class="laco-item active">
+        <img src="LACO_2505135_PierreNiney_210x280_RevueDuClubLAGARDERE_ParisRACING.png" alt="Campagne presse et affichage Pierre Niney" loading="lazy">
+        <span class="laco-format-badge">Campagne presse et affichage Pierre Niney</span>
+      </div>
+      <div class="laco-item">
+        <img src="LACO_2507067_C_Boutier_225x302_Journal_Du_Golf.png" alt="Campagne presse Céline Boutier" loading="lazy">
+        <span class="laco-format-badge">Campagne presse Céline Boutier</span>
+      </div>
+    </div>
+    <div class="laco-nav">
+      <button class="laco-nav-btn" id="lacoPrev">&#8592;</button>
+      <button class="laco-nav-btn" id="lacoNext">&#8594;</button>
+    </div>
+    <div class="laco-dots" id="lacoDots">
+      <span class="laco-dot active"></span>
+      <span class="laco-dot"></span>
+    </div>
+    <div class="laco-progress" id="lacoProgress"></div>
+  </div>
+
+	<div class="info-panel" id="infoPanel_display">
+      <div class="info-panel-inner">
+        <div class="info-panel-bar"></div>
+        <div class="info-panel-left">
+          <div class="info-panel-tag">Display · Affichage · PLV</div>
+          <div class="info-panel-client" id="infoClient_display">Lacoste</div>
+          <div class="info-panel-sub" id="infoSub_display">Campagne Pierre Niney et Céline Boutier</div>
+        </div>
+        <div class="info-panel-sep"></div>
+        <div class="info-panel-desc" id="infoDesc_display">Déclinaisons multi-formats <strong>affichage - plan presse national et international</strong> <span class="bullet"></div>
+      </div>
+    </div>
+	
+    <script>
+  (function() {
+    var ci = 0;
+    var total = 2;
+    var track = document.getElementById('lacoTrack');
+    var dots = document.querySelectorAll('#lacoDots .laco-dot');
+    var items = document.querySelectorAll('#lacoCarousel .laco-item');
+    var progress = document.getElementById('lacoProgress');
+    var timer;
+
+    function lacoUpdate(idx) {
+      ci = (idx + total) % total;
+      track.style.transform = 'translateX(-' + (ci * 100) + '%)';
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === ci); });
+      items.forEach(function(it, i) { it.classList.toggle('active', i === ci); });
+      progress.style.transition = 'none';
+      progress.style.width = '0%';
+      setTimeout(function() {
+        progress.style.transition = 'width 3.5s linear';
+        progress.style.width = '100%';
+      }, 30);
+    }
+
+    function startAuto() {
+      clearInterval(timer);
+      timer = setInterval(function() { lacoUpdate(ci + 1); }, 3500);
+    }
+
+    document.getElementById('lacoNext').addEventListener('click', function() { lacoUpdate(ci + 1); startAuto(); });
+    document.getElementById('lacoPrev').addEventListener('click', function() { lacoUpdate(ci - 1); startAuto(); });
+    dots.forEach(function(d, i) {
+      d.addEventListener('click', function() { lacoUpdate(i); startAuto(); });
+    });
+
+    lacoUpdate(0);
+    startAuto();
+  })();
+  </script>
+</div>
 
         <!-- Slide 6: La Poste Solutions Business — Log'issimo -->
 <div class="carousel-slide">
@@ -2225,7 +2228,7 @@
   </script>
 </div>
 
-        <!-- Slide 7: Crédit Mutuel — Campagne affichage -->
+        <!-- Slide 7: KFC -->
 <div class="carousel-slide">
   <style>
   .cm-carousel {
@@ -2329,28 +2332,28 @@
   <div class="cm-carousel" id="cmCarousel">
     <div class="cm-track" id="cmTrack">
       <div class="cm-item active">
-        <img src="Credit_mutuel_1.png" alt="Crédit Mutuel — Alternant dans une banque" loading="lazy">
-        <span class="cm-format-badge">Recrutement alternants</span>
+        <img src="KFCF_2505108_Wings_2m2_Aff_Panoramique_1690x1240mm.png" alt="KFC — Summer Camp" loading="lazy">
+        <span class="cm-format-badge">KFC -Campagne Summer Camp</span>
       </div>
       <div class="cm-item">
-        <img src="Credit_mutuel_2.png" alt="Crédit Mutuel — Banque n°1 Relation Client" loading="lazy">
-        <span class="cm-format-badge">Podium Relation Client 2024</span>
+        <img src="KFCF_2505108_SUMMER_CAMP_WINGS_1185x1750_abribus.png" alt="KFC — Summer Camp" loading="lazy">
+        <span class="cm-format-badge">KFC - Campagne Summer Camp</span>
       </div>
       <div class="cm-item">
-        <img src="Credit_mutuel_3.png" alt="Crédit Mutuel — Sans actionnaires" loading="lazy">
-        <span class="cm-format-badge">Banque coopérative</span>
+        <img src="KFCF_2505108_SUMMER_CAMP_KENTUCKY_1185x1750_abribus.png" alt="KFC — Summer Camp" loading="lazy">
+        <span class="cm-format-badge">KFC - Campagne Summer Camp</span>
       </div>
       <div class="cm-item">
-        <img src="Credit_mutuel_4.png" alt="Crédit Mutuel — Projet professionnel" loading="lazy">
-        <span class="cm-format-badge">Financement professionnel</span>
+        <img src="KFCF_2507061_DEMON_SLAYER_vitro_1100x1300mm.png" alt="KFC — Demon Slayer" loading="lazy">
+        <span class="cm-format-badge">KFC - Campagne Demon Slayer</span>
       </div>
       <div class="cm-item">
-        <img src="Credit_mutuel_5.png" alt="Crédit Mutuel — Crédit Vélo" loading="lazy">
-        <span class="cm-format-badge">Crédit d'intérêt sociétal — Vélo</span>
+        <img src="KFCF_2507061_k22_DEMON_SLAYER_313x170.png" alt="KFC — Demon Slayer" loading="lazy">
+        <span class="cm-format-badge">KFC - Campagne Demon Slayer</span>
       </div>
       <div class="cm-item">
-        <img src="Credit_mutuel_6.png" alt="Crédit Mutuel — Assurance santé" loading="lazy">
-        <span class="cm-format-badge">Assurance santé — Avance frais</span>
+        <img src="KFCF_2511137_Menu_5Balles_OOH_1450x2156mm_4m2.png" alt="KFC — Menu 5 Balles" loading="lazy">
+        <span class="cm-format-badge">KFC - Campagne Menu 5 Balles</span>
       </div>
     </div>
     <div class="cm-nav">
@@ -2373,11 +2376,11 @@
         <div class="info-panel-bar"></div>
         <div class="info-panel-left">
           <div class="info-panel-tag">Display · Affichage · PLV</div>
-          <div class="info-panel-client" id="infoClient_display">Crédit Mutuel</div>
+          <div class="info-panel-client" id="infoClient_display">KFC</div>
           <div class="info-panel-sub" id="infoSub_display">Campagne Affichage</div>
         </div>
         <div class="info-panel-sep"></div>
-        <div class="info-panel-desc" id="infoDesc_display"><strong>affichage Instore
+        <div class="info-panel-desc" id="infoDesc_display">Déclinaisons multi-formats <strong>affichage national Outdoor et Instore</strong> <span class="bullet"></span>
 		<span class="bullet"></div>
       </div>
     </div>
